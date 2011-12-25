@@ -1,0 +1,6 @@
+# Output directories
+target
+
+# Eclipse files
+.classpath
+.project
