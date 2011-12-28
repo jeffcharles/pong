@@ -2,10 +2,14 @@ package com.beyondtechnicallycorrect.pong.models.position;
 
 import junit.framework.Assert;
 import org.junit.*;
+import org.junit.rules.ExpectedException;
 
 import com.beyondtechnicallycorrect.pong.models.position.PositionImpl;
 
-public final class TestPosition {
+public final class TestPositionImpl {
+	
+	@Rule
+	public ExpectedException exception = ExpectedException.none();
 	
 	private static PositionImpl m_noOverlapTopLeft;
 	private static PositionImpl m_noOverlapTop;
@@ -60,6 +64,55 @@ public final class TestPosition {
 		boolean isOverlapping =
 				overlapPositionToTest.isOverlapping(m_overlapMiddle);
 		Assert.assertTrue(isOverlapping);
+	}
+	
+	@Test
+	public void testCtor_WhenX1LessThanZero_ShouldThrowIllegalArgException() {
+		exception.expect(IllegalArgumentException.class);
+		new PositionImpl(-1, 1, 0, 1);
+	}
+	
+	@Test
+	public void testCtor_WhenX2LessThanZero_ShouldThrowIllegalArgException() {
+		exception.expect(IllegalArgumentException.class);
+		new PositionImpl(0, -1, 0, 1);
+	}
+	
+	@Test
+	public void testCtor_WhenY1LessThanZero_ShouldThrowIllegalArgException() {
+		exception.expect(IllegalArgumentException.class);
+		new PositionImpl(0, 1, -1, 1);
+	}
+	
+	@Test
+	public void testCtor_WhenY2LessThanZero_ShouldThrowIllegalArgException() {
+		exception.expect(IllegalArgumentException.class);
+		new PositionImpl(0, 1, 0, -1);
+	}
+	
+	@Test
+	public void testCtor_WhenX2EqualsX1_ShouldThrowIllegalArgException() {
+		exception.expect(IllegalArgumentException.class);
+		new PositionImpl(1, 1, 0, 1);
+	}
+	
+	@Test
+	public void testCtor_WhenX2LessThanX1_ShouldThrowIllegalArgException() {
+		exception.expect(IllegalArgumentException.class);
+		new PositionImpl(2, 1, 0, 1);
+	}
+	
+	@Test
+	public void testCtor_WhenY2EqualsY1_ShouldThrowIllegalArgException() {
+		exception.expect(IllegalArgumentException.class);
+		new PositionImpl(1, 2, 1, 1);
+	}
+	
+	@Test
+	public void testCtor_WhenY2LessThanY1_ShouldThrowIllegalArgException() {
+		exception.expect(IllegalArgumentException.class);
+		new PositionImpl(1, 2, 2, 1);
+		
 	}
 	
 	@Test
