@@ -357,4 +357,22 @@ public final class TestDirectionalVelocity {
 		Assert.assertEquals(0, amountUnMoved);
 	}
 	
+	@Test
+	public void testGetAmountToMove() {
+		final int AMOUNT_TO_MOVE = 20;
+		DirectionalVelocityInfo info =
+				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, 1);
+		DirectionalVelocity vel = new DirectionalVelocity(info);
+		Assert.assertEquals(AMOUNT_TO_MOVE, vel.getAmountToMove());
+	}
+	
+	@Test
+	public void testGetFramesPerMove() {
+		final int FRAMES_PER_MOVE = 10;
+		DirectionalVelocityInfo info =
+				new DirectionalVelocityInfo(1, FRAMES_PER_MOVE);
+		DirectionalVelocity vel = new DirectionalVelocity(info);
+		Assert.assertEquals(FRAMES_PER_MOVE, vel.getFramesPerMove());
+	}
+	
 }
