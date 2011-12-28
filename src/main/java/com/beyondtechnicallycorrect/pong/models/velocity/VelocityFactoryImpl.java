@@ -1,9 +1,12 @@
 package com.beyondtechnicallycorrect.pong.models.velocity;
 
+import com.google.inject.Inject;
+
 public final class VelocityFactoryImpl implements VelocityFactory {
 	
 	private final Sanitizer m_sanitizer;
 	
+	@Inject
 	public VelocityFactoryImpl(
 			Sanitizer sanitizer
 		) {
