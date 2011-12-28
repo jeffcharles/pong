@@ -149,5 +149,33 @@ public final class TestSanitizer {
 		assertDirectionalVelocityInfo(
 				SANITIZED_AMOUNT, SANITIZED_FRAMES, sanitized);
 	}
+	
+	@Test
+	public void testSanitize_WhenNegFourAmountAndTwoFrames_ShouldReturnNegTwoAndOne() {
+		final int AMOUNT_TO_MOVE = -4;
+		final int FRAMES = 2;
+		DirectionalVelocityInfo info =
+				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES);
+		DirectionalVelocityInfo sanitized = m_sanitizer.sanitize(info);
+		
+		final int SANITIZED_AMOUNT = -2;
+		final int SANITIZED_FRAMES = 1;
+		assertDirectionalVelocityInfo(
+				SANITIZED_AMOUNT, SANITIZED_FRAMES, sanitized);
+	}
+	
+	@Test
+	public void testSanitize_WhenNegTwoAmountAndFiveFrames_ShouldReturnNegOneAndTwo() {
+		final int AMOUNT_TO_MOVE = -2;
+		final int FRAMES = 5;
+		DirectionalVelocityInfo info =
+				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES);
+		DirectionalVelocityInfo sanitized = m_sanitizer.sanitize(info);
+		
+		final int SANITIZED_AMOUNT = -1;
+		final int SANITIZED_FRAMES = 2;
+		assertDirectionalVelocityInfo(
+				SANITIZED_AMOUNT, SANITIZED_FRAMES, sanitized);
+	}
 
 }

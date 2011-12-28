@@ -17,17 +17,22 @@ final class Sanitizer {
 		int amountToMove = info.getAmountToMove();
 		int frames = info.getFramesPerMove();
 		
-		boolean greaterThanOne = amountToMove > frames;
-		int quotient = greaterThanOne ?
+		boolean greaterThanOne =
+				Math.abs(amountToMove) / frames >= 1;
+		int quotient = Math.abs(greaterThanOne ?
 				amountToMove / frames :
-				frames / amountToMove;
+				frames / amountToMove);
 		int remainder = greaterThanOne ?
 				amountToMove % frames :
 				frames % amountToMove;
 		
 		if(remainder < quotient) {
-			int sanitizedAmount = greaterThanOne ? amountToMove / frames : 1;
-			int sanitizedFrames = greaterThanOne ? 1 : frames / amountToMove;
+			int sanitizedAmount = greaterThanOne ?
+					amountToMove / frames :
+					amountToMove > 0 ? 1 : -1;
+			int sanitizedFrames = greaterThanOne ?
+					1 :
+					frames / Math.abs(amountToMove);
 			
 			return new DirectionalVelocityInfo(
 					sanitizedAmount, sanitizedFrames);

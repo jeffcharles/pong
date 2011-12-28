@@ -12,7 +12,7 @@ final class DirectionalVelocityInfo {
 		
 		if(framesPerMove < 1) {
 			throw new IllegalArgumentException(
-					"framesBetweenMovement must be greater than or equal to 1");
+					"framesPerMove must be greater than or equal to 1");
 		}
 		
 		m_amountToMove = amountToMove;
