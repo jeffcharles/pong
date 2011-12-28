@@ -1,60 +1,62 @@
-package com.beyondtechnicallycorrect.pong.models.implementations;
+package com.beyondtechnicallycorrect.pong.models.position;
 
 import junit.framework.Assert;
 import org.junit.*;
 
+import com.beyondtechnicallycorrect.pong.models.position.PositionImpl;
+
 public final class TestPosition {
 	
-	private static Position m_noOverlapTopLeft;
-	private static Position m_noOverlapTop;
-	private static Position m_noOverlapTopRight;
-	private static Position m_noOverlapMiddleLeft;
-	private static Position m_noOverlapMiddle;
-	private static Position m_noOverlapMiddleRight;
-	private static Position m_noOverlapBottomLeft;
-	private static Position m_noOverlapBottom;
-	private static Position m_noOverlapBottomRight;
+	private static PositionImpl m_noOverlapTopLeft;
+	private static PositionImpl m_noOverlapTop;
+	private static PositionImpl m_noOverlapTopRight;
+	private static PositionImpl m_noOverlapMiddleLeft;
+	private static PositionImpl m_noOverlapMiddle;
+	private static PositionImpl m_noOverlapMiddleRight;
+	private static PositionImpl m_noOverlapBottomLeft;
+	private static PositionImpl m_noOverlapBottom;
+	private static PositionImpl m_noOverlapBottomRight;
 	
-	private static Position m_overlapTopLeft;
-	private static Position m_overlapTop;
-	private static Position m_overlapTopRight;
-	private static Position m_overlapMiddleLeft;
-	private static Position m_overlapMiddle;
-	private static Position m_overlapMiddleRight;
-	private static Position m_overlapBottomLeft;
-	private static Position m_overlapBottom;
-	private static Position m_overlapBottomRight;
+	private static PositionImpl m_overlapTopLeft;
+	private static PositionImpl m_overlapTop;
+	private static PositionImpl m_overlapTopRight;
+	private static PositionImpl m_overlapMiddleLeft;
+	private static PositionImpl m_overlapMiddle;
+	private static PositionImpl m_overlapMiddleRight;
+	private static PositionImpl m_overlapBottomLeft;
+	private static PositionImpl m_overlapBottom;
+	private static PositionImpl m_overlapBottomRight;
 	
 	@BeforeClass
 	public static void setUpClass() {
-		m_noOverlapTopLeft =     new Position(1, 10, 1, 10);
-		m_noOverlapTop =         new Position(11, 20, 1, 10);
-		m_noOverlapTopRight =    new Position(21, 30, 1, 10);
-		m_noOverlapMiddleLeft =  new Position(1, 10, 11, 20);
-		m_noOverlapMiddle =      new Position(11, 20, 11, 20);
-		m_noOverlapMiddleRight = new Position(21, 30, 11, 20);
-		m_noOverlapBottomLeft =  new Position(1, 10, 21, 30);
-		m_noOverlapBottom =      new Position(11, 20, 21, 30);
-		m_noOverlapBottomRight = new Position(21, 30, 21, 30);
+		m_noOverlapTopLeft =     new PositionImpl(1, 10, 1, 10);
+		m_noOverlapTop =         new PositionImpl(11, 20, 1, 10);
+		m_noOverlapTopRight =    new PositionImpl(21, 30, 1, 10);
+		m_noOverlapMiddleLeft =  new PositionImpl(1, 10, 11, 20);
+		m_noOverlapMiddle =      new PositionImpl(11, 20, 11, 20);
+		m_noOverlapMiddleRight = new PositionImpl(21, 30, 11, 20);
+		m_noOverlapBottomLeft =  new PositionImpl(1, 10, 21, 30);
+		m_noOverlapBottom =      new PositionImpl(11, 20, 21, 30);
+		m_noOverlapBottomRight = new PositionImpl(21, 30, 21, 30);
 		
-		m_overlapTopLeft = new Position(1, 11, 1, 11);
-		m_overlapTop = new Position(12, 19, 1, 11);
-		m_overlapTopRight = new Position(20, 30, 1, 11);
-		m_overlapMiddleLeft = new Position(12, 19, 1, 11);
-		m_overlapMiddle = new Position(11, 20, 11, 20);
-		m_overlapMiddleRight = new Position(20, 30, 12, 19);
-		m_overlapBottomLeft = new Position(1, 11, 20, 30);
-		m_overlapBottom = new Position(12, 19, 20, 30);
-		m_overlapBottomRight = new Position(20, 30, 20, 30);
+		m_overlapTopLeft = new PositionImpl(1, 11, 1, 11);
+		m_overlapTop = new PositionImpl(12, 19, 1, 11);
+		m_overlapTopRight = new PositionImpl(20, 30, 1, 11);
+		m_overlapMiddleLeft = new PositionImpl(12, 19, 1, 11);
+		m_overlapMiddle = new PositionImpl(11, 20, 11, 20);
+		m_overlapMiddleRight = new PositionImpl(20, 30, 12, 19);
+		m_overlapBottomLeft = new PositionImpl(1, 11, 20, 30);
+		m_overlapBottom = new PositionImpl(12, 19, 20, 30);
+		m_overlapBottomRight = new PositionImpl(20, 30, 20, 30);
 	}
 	
-	private void standardNoOverlapTest(Position noOverlapPositionToTest) {
+	private void standardNoOverlapTest(PositionImpl noOverlapPositionToTest) {
 		boolean isOverlapping =
 				noOverlapPositionToTest.isOverlapping(m_noOverlapMiddle);
 		Assert.assertFalse(isOverlapping);
 	}
 	
-	private void standardOverlapTest(Position overlapPositionToTest) {
+	private void standardOverlapTest(PositionImpl overlapPositionToTest) {
 		boolean isOverlapping =
 				overlapPositionToTest.isOverlapping(m_overlapMiddle);
 		Assert.assertTrue(isOverlapping);
@@ -62,7 +64,7 @@ public final class TestPosition {
 	
 	@Test
 	public void testIsOverlapping_WhenPositionIsSame_ShouldBeTrue() {
-		Position pos = new Position(1, 10, 1, 10);
+		PositionImpl pos = new PositionImpl(1, 10, 1, 10);
 		
 		boolean isOverlapping = pos.isOverlapping(pos);
 		
@@ -71,8 +73,8 @@ public final class TestPosition {
 
 	@Test
 	public void testIsOverlapping_WhenPositionIsSuperset_ShouldBeTrue() {
-		Position superset = new Position(1, 10, 1, 10);
-		Position subset = new Position(3, 7, 3, 7);
+		PositionImpl superset = new PositionImpl(1, 10, 1, 10);
+		PositionImpl subset = new PositionImpl(3, 7, 3, 7);
 		
 		boolean isOverlapping = superset.isOverlapping(subset);
 		
@@ -81,8 +83,8 @@ public final class TestPosition {
 	
 	@Test
 	public void testIsOverlapping_WhenPositionIsSubset_ShouldBeTrue() {
-		Position superset = new Position(1, 10, 1, 10);
-		Position subset = new Position(3, 7, 3, 7);
+		PositionImpl superset = new PositionImpl(1, 10, 1, 10);
+		PositionImpl subset = new PositionImpl(3, 7, 3, 7);
 		
 		boolean isOverlapping = subset.isOverlapping(superset);
 		

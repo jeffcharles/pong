@@ -1,4 +1,4 @@
-package com.beyondtechnicallycorrect.pong.models;
+package com.beyondtechnicallycorrect.pong.models.position;
 
 public interface Position {
 

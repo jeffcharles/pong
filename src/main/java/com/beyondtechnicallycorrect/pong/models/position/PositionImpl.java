@@ -1,7 +1,6 @@
-package com.beyondtechnicallycorrect.pong.models.implementations;
+package com.beyondtechnicallycorrect.pong.models.position;
 
-final class Position implements
-		com.beyondtechnicallycorrect.pong.models.Position {
+final class PositionImpl implements Position {
 
 	private final int m_x1;
 	private final int m_x2;
@@ -9,12 +8,12 @@ final class Position implements
 	private final int m_y2;
 	
 	/**
-	 * @param x1 Should be greater or equal to 0
-	 * @param x2 Should be greater or equal to 0
-	 * @param y1 Should be greater or equal to 0
-	 * @param y2 Should be greater or equal to 0
+	 * @param x1 Must be greater than or equal to 0 and less than x2
+	 * @param x2 Must be greater than or equal to 0 and greater than x1
+	 * @param y1 Must be greater than or equal to 0 and less than y2 
+	 * @param y2 Must be greater than or equal to 0 and greater than y1
 	 */
-	public Position(
+	public PositionImpl(
 			int x1,
 			int x2,
 			int y1,
@@ -23,6 +22,14 @@ final class Position implements
 		
 		if(x1 < 0 || x2 < 0 || y1 < 0 || y2 < 0) {
 			throw new IllegalArgumentException("Arguments cannot be less than 0");
+		}
+		
+		if(x2 <= x1) {
+			throw new IllegalArgumentException("X2 must be greater than X1");
+		}
+		
+		if(y2 <= y1) {
+			throw new IllegalArgumentException("Y2 must be greater than Y1");
 		}
 		
 		m_x1 = x1;
@@ -53,7 +60,7 @@ final class Position implements
 
 	@Override
 	public boolean isOverlapping(
-			com.beyondtechnicallycorrect.pong.models.Position position) {
+			com.beyondtechnicallycorrect.pong.models.position.Position position) {
 		
 		final int otherX1 = position.getX1();
 		final int otherX2 = position.getX2();
