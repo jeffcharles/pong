@@ -14,11 +14,11 @@ public final class VelocityResult {
 		m_yAmountMoved = yAmountMoved;
 	}
 
-	int getXAmountMoved() {
+	public int getXAmountMoved() {
 		return m_xAmountMoved;
 	}
 	
-	int getYAmountMoved() {
+	public int getYAmountMoved() {
 		return m_yAmountMoved;
 	}
 	
