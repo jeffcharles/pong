@@ -34,7 +34,7 @@ public final class VelocityFactoryImpl implements VelocityFactory {
 		DirectionalVelocity yVelocity =
 				new DirectionalVelocity(sanitizedYVelocity);
 		
-		Velocity velocity = new Velocity(xVelocity, yVelocity);
+		Velocity velocity = new VelocityImpl(xVelocity, yVelocity);
 		return velocity;
 	}
 
