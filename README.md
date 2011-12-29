@@ -10,4 +10,5 @@ This project uses the following libraries and frameworks:
     * Google Guice - for dependency injection
     * JUnit - for automated tests
     * Mockito - for mocking objects for unit tests
+    * Failsafe Maven plugin - for running integration tests inside Maven
     * Cobertura - for generating test code coverage statistics
