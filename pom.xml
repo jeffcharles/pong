@@ -63,6 +63,7 @@
           <instrumentation>
             <excludes>
               <exclude>com/beyondtechnicallycorrect/pong/**/*Module.class</exclude>
+              <exclude>com/beyondtechnicallycorrect/pong/**/*FactoryImpl.class</exclude>
             </excludes>
           </instrumentation>
         </configuration>
