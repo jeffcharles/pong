@@ -80,23 +80,7 @@ final class PositionImpl implements Position {
 			return false;
 		}
 		
-		boolean overlappingX =
-				(otherX1 >= m_x1 && otherX1 <= m_x2) ||
-				(otherX2 >= m_x1 && otherX2 <= m_x2) ||
-				(m_x1 >= otherX1 && m_x1 <= otherX2) ||
-				(m_x2 >= otherX1 && m_x2 <= otherX2);
-		
-		if(!overlappingX) {
-			return false;
-		}
-		
-		boolean overlappingY =
-				(otherY1 >= m_y1 && otherY1 <= m_y2) ||
-				(otherY2 >= m_y2 && otherY2 <= m_y2) ||
-				(m_y1 >= otherY1 && m_y1 <= otherY2) ||
-				(m_y2 >= otherY1 && m_y2 <= otherY2);
-		
-		return overlappingY;
+		return true;
 	}
 
 }
