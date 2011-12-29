@@ -33,9 +33,9 @@ public final class VelocityFactoryImpl implements VelocityFactory {
 				m_sanitizer.sanitize(yVelocityInfo);
 		
 		DirectionalVelocity xVelocity =
-				new DirectionalVelocity(sanitizedXVelocity);
+				new DirectionalVelocityImpl(sanitizedXVelocity);
 		DirectionalVelocity yVelocity =
-				new DirectionalVelocity(sanitizedYVelocity);
+				new DirectionalVelocityImpl(sanitizedYVelocity);
 		
 		Velocity velocity = new VelocityImpl(xVelocity, yVelocity);
 		return velocity;

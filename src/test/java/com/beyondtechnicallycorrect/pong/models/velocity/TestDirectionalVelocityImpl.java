@@ -2,10 +2,10 @@ package com.beyondtechnicallycorrect.pong.models.velocity;
 
 import org.junit.*;
 
-import com.beyondtechnicallycorrect.pong.models.velocity.DirectionalVelocity;
+import com.beyondtechnicallycorrect.pong.models.velocity.DirectionalVelocityImpl;
 import com.beyondtechnicallycorrect.pong.models.velocity.DirectionalVelocityInfo;
 
-public final class TestDirectionalVelocity {
+public final class TestDirectionalVelocityImpl {
 
 	@Test
 	public void testMove_WhenOneFramePerMove_ShouldMove() {
@@ -13,7 +13,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 1;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		int amountMoved = velocity.move();
 		Assert.assertEquals(AMOUNT_TO_MOVE, amountMoved);
 	}
@@ -24,7 +24,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 1;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		int amountUnMoved = velocity.unMove();
 		Assert.assertEquals(-AMOUNT_TO_MOVE, amountUnMoved);
 	}
@@ -35,7 +35,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 2;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		int amountMoved = velocity.move();
 		Assert.assertEquals(AMOUNT_TO_MOVE, amountMoved);
 	}
@@ -46,7 +46,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 2;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		int amountUnMoved = velocity.unMove();
 		Assert.assertEquals(0, amountUnMoved);
 	}
@@ -57,7 +57,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 2;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		velocity.move();
 		int amountMoved = velocity.move();
 		Assert.assertEquals(0, amountMoved);
@@ -69,7 +69,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 2;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		velocity.unMove();
 		int amountUnMoved = velocity.unMove();
 		Assert.assertEquals(-AMOUNT_TO_MOVE, amountUnMoved);
@@ -81,7 +81,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 3;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		int amountMoved = velocity.move();
 		Assert.assertEquals(AMOUNT_TO_MOVE, amountMoved);
 	}
@@ -92,7 +92,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 3;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		int amountUnMoved = velocity.unMove();
 		Assert.assertEquals(0, amountUnMoved);
 	}
@@ -103,7 +103,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 3;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		velocity.move();
 		int amountMoved = velocity.move();
 		Assert.assertEquals(0, amountMoved);
@@ -115,7 +115,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 3;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		velocity.unMove();
 		int amountUnMoved = velocity.unMove();
 		Assert.assertEquals(0, amountUnMoved);
@@ -127,7 +127,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 3;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		velocity.move();
 		velocity.move();
 		int amountMoved = velocity.move();
@@ -140,7 +140,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 3;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		velocity.unMove();
 		velocity.unMove();
 		int amountUnMoved = velocity.unMove();
@@ -153,7 +153,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 1;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		velocity.move();
 		int amountMoved = velocity.move();
 		Assert.assertEquals(AMOUNT_TO_MOVE, amountMoved);
@@ -165,7 +165,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 1;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		velocity.unMove();
 		int amountUnMoved = velocity.unMove();
 		Assert.assertEquals(-AMOUNT_TO_MOVE, amountUnMoved);
@@ -177,7 +177,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 2;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		velocity.move();
 		velocity.move();
 		int amountMoved = velocity.move();
@@ -190,7 +190,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 2;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		velocity.unMove();
 		velocity.unMove();
 		int amountUnMoved = velocity.unMove();
@@ -203,7 +203,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 2;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		velocity.move();
 		velocity.move();
 		velocity.move();
@@ -217,7 +217,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 2;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		velocity.unMove();
 		velocity.unMove();
 		velocity.unMove();
@@ -231,7 +231,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 1;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		velocity.unMove();
 		int amountMoved = velocity.move();
 		Assert.assertEquals(AMOUNT_TO_MOVE, amountMoved);
@@ -243,7 +243,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 1;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		velocity.move();
 		int amountUnMoved = velocity.unMove();
 		Assert.assertEquals(-AMOUNT_TO_MOVE, amountUnMoved);
@@ -255,7 +255,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 2;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		velocity.unMove();
 		int amountMoved = velocity.move();
 		Assert.assertEquals(0, amountMoved);
@@ -267,7 +267,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 2;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		velocity.move();
 		int amountUnMoved = velocity.unMove();
 		Assert.assertEquals(-AMOUNT_TO_MOVE, amountUnMoved);
@@ -279,7 +279,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 2;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		velocity.unMove();
 		velocity.unMove();
 		int amountMoved = velocity.move();
@@ -292,7 +292,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 2;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		velocity.move();
 		velocity.move();
 		int amountUnMoved = velocity.unMove();
@@ -305,7 +305,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 2;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		velocity.unMove();
 		velocity.unMove();
 		velocity.move();
@@ -319,7 +319,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 2;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		velocity.move();
 		velocity.move();
 		velocity.unMove();
@@ -333,7 +333,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 2;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		velocity.unMove();
 		velocity.unMove();
 		velocity.move();
@@ -348,7 +348,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 2;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES_PER_MOVE);
-		DirectionalVelocity velocity = new DirectionalVelocity(info);
+		DirectionalVelocity velocity = new DirectionalVelocityImpl(info);
 		velocity.move();
 		velocity.move();
 		velocity.unMove();
@@ -362,7 +362,7 @@ public final class TestDirectionalVelocity {
 		final int AMOUNT_TO_MOVE = 20;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, 1);
-		DirectionalVelocity vel = new DirectionalVelocity(info);
+		DirectionalVelocity vel = new DirectionalVelocityImpl(info);
 		Assert.assertEquals(AMOUNT_TO_MOVE, vel.getAmountToMove());
 	}
 	
@@ -371,7 +371,7 @@ public final class TestDirectionalVelocity {
 		final int FRAMES_PER_MOVE = 10;
 		DirectionalVelocityInfo info =
 				new DirectionalVelocityInfo(1, FRAMES_PER_MOVE);
-		DirectionalVelocity vel = new DirectionalVelocity(info);
+		DirectionalVelocity vel = new DirectionalVelocityImpl(info);
 		Assert.assertEquals(FRAMES_PER_MOVE, vel.getFramesPerMove());
 	}
 	
