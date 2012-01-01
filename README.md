@@ -6,6 +6,7 @@ ecosystem as well as practice some basic game design and multi-threaded
 programming.
 
 This project uses the following libraries and frameworks:
+    
     * Maven - for managing builds, external dependencies, and file layout
     * Google Guice - for dependency injection
     * JUnit - for automated tests
