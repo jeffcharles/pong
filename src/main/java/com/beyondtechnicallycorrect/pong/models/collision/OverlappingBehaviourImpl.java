@@ -1,12 +1,13 @@
-package com.beyondtechnicallycorrect.pong.models.placeable;
+package com.beyondtechnicallycorrect.pong.models.collision;
 
+import com.beyondtechnicallycorrect.pong.models.placeable.Placeable;
 import com.beyondtechnicallycorrect.pong.models.position.*;
 
-final class PlaceableBehaviourImpl implements PlaceableBehaviour {
+final class OverlappingBehaviourImpl implements OverlappingBehaviour {
 
 	private final PositionFactory m_positionFactory;
 	
-	public PlaceableBehaviourImpl(
+	public OverlappingBehaviourImpl(
 			PositionFactory positionFactory
 		) {
 		

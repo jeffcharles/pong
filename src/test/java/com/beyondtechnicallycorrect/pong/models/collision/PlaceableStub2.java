@@ -28,10 +28,4 @@ final class PlaceableStub2 implements Placeable {
 		return 0;
 	}
 
-	@Override
-	public boolean isOverlap(Placeable model) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

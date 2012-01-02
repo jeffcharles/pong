@@ -1,4 +1,4 @@
-package com.beyondtechnicallycorrect.pong.models.placeable;
+package com.beyondtechnicallycorrect.pong.models.collision;
 
 import static org.mockito.Mockito.*;
 
@@ -6,16 +6,19 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
+import com.beyondtechnicallycorrect.pong.models.collision.OverlappingBehaviour;
+import com.beyondtechnicallycorrect.pong.models.collision.OverlappingBehaviourImpl;
+import com.beyondtechnicallycorrect.pong.models.placeable.Placeable;
 import com.beyondtechnicallycorrect.pong.models.position.*;
 
-public final class TestPlaceableBehaviourImpl {
+public final class TestOverlappingBehaviourImpl {
 
 	@Test
 	public void testIsOverlap_WhenUnderlyingPositionReturnsFalse_ShouldReturnFalse() {
 		final boolean UNDERLYING_OVERLAP = false;
 		
 		PositionFactory factory = new PositionFactoryStub(UNDERLYING_OVERLAP);
-		PlaceableBehaviour pb = new PlaceableBehaviourImpl(factory);
+		OverlappingBehaviour pb = new OverlappingBehaviourImpl(factory);
 		Placeable model = new PlaceableStub();
 		Position pos = new PositionStub(UNDERLYING_OVERLAP);
 		
@@ -29,7 +32,7 @@ public final class TestPlaceableBehaviourImpl {
 		final boolean UNDERLYING_OVERLAP = true;
 		
 		PositionFactory factory = new PositionFactoryStub(UNDERLYING_OVERLAP);
-		PlaceableBehaviour pb = new PlaceableBehaviourImpl(factory);
+		OverlappingBehaviour pb = new OverlappingBehaviourImpl(factory);
 		Placeable model = new PlaceableStub();
 		Position pos = new PositionStub(UNDERLYING_OVERLAP);
 		
@@ -50,7 +53,7 @@ public final class TestPlaceableBehaviourImpl {
 		when(factory.create(X1, X2, Y1, Y2)).thenReturn(innerPos);
 		Placeable model = new PlaceableStub(X1, X2, Y1, Y2);
 		Position pos = new PositionStub(true);
-		PlaceableBehaviour pb = new PlaceableBehaviourImpl(factory);
+		OverlappingBehaviour pb = new OverlappingBehaviourImpl(factory);
 		
 		pb.isOverlap(model, pos);
 		

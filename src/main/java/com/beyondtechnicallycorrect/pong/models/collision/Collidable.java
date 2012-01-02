@@ -6,8 +6,9 @@ import com.beyondtechnicallycorrect.pong.models.placeable.Placeable;
 
 public interface Collidable extends Placeable {
 
-	void move();
-	void unMove();
-	void collide(Type typeCollidedWith, Placeable objectCollidedWith);
+	public void move();
+	public void unMove();
+	public boolean isOverlapping(Placeable otherModel);
+	public void collide(Type typeCollidedWith, Placeable objectCollidedWith);
 	
 }

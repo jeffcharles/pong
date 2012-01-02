@@ -1,4 +1,4 @@
-package com.beyondtechnicallycorrect.pong.models.placeable;
+package com.beyondtechnicallycorrect.pong.models.collision;
 
 import com.beyondtechnicallycorrect.pong.models.position.Position;
 
