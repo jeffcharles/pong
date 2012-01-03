@@ -13,3 +13,14 @@ This project uses the following libraries and frameworks:
 * Mockito - for mocking objects for unit tests
 * Failsafe Maven plugin - for running integration tests inside Maven
 * Cobertura - for generating test code coverage statistics
+
+Setting up a Maven-based Eclipse development environment on Ubuntu
+------------------------------------------------------------------
+
+1. Install eclipse and maven (which will also install a JDK and JRE):
+   `sudo apt-get install eclipse maven2`
+2. Go to the project root and enter:
+   `mvn -Declipse.workspace=<path-to-eclipse-workspace> eclipse:add-maven-repo`
+3. Download the appropriate dependencies, compile, and test the project with:
+   `mvn verify`
+4. Generate the Eclipse project and classpath files: `mvn eclipse:eclipse`
