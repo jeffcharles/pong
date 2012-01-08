@@ -1,14 +1,11 @@
 package com.beyondtechnicallycorrect.pong.models.collision;
 
-import java.lang.reflect.Type;
-
+import com.beyondtechnicallycorrect.pong.models.placeable.Overlappable;
 import com.beyondtechnicallycorrect.pong.models.placeable.Placeable;
+import com.beyondtechnicallycorrect.pong.models.velocity.Movable;
 
-public interface Collidable extends Placeable {
+public interface Collidable extends Placeable, Overlappable, Movable {
 
-	public void move();
-	public void unMove();
-	public boolean isOverlapping(Placeable otherModel);
-	public void collide(Type typeCollidedWith, Placeable objectCollidedWith);
+	public void collide(Placeable objectCollidedWith);
 	
 }

@@ -8,7 +8,6 @@ public final class CollisionModule extends AbstractModule {
 	protected void configure() {
 		bind(CollisionBehaviours.class)
 			.to(CollisionBehavioursImpl.class);
-		bind(OverlappingBehaviour.class).to(OverlappingBehaviourImpl.class);
 	}
 
 }

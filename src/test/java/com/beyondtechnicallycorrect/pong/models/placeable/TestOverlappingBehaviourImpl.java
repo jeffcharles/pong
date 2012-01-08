@@ -1,4 +1,4 @@
-package com.beyondtechnicallycorrect.pong.models.collision;
+package com.beyondtechnicallycorrect.pong.models.placeable;
 
 import static org.mockito.Mockito.*;
 
@@ -6,8 +6,8 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import com.beyondtechnicallycorrect.pong.models.collision.OverlappingBehaviour;
-import com.beyondtechnicallycorrect.pong.models.collision.OverlappingBehaviourImpl;
+import com.beyondtechnicallycorrect.pong.models.placeable.OverlappingBehaviour;
+import com.beyondtechnicallycorrect.pong.models.placeable.OverlappingBehaviourImpl;
 import com.beyondtechnicallycorrect.pong.models.placeable.Placeable;
 import com.beyondtechnicallycorrect.pong.models.position.*;
 
