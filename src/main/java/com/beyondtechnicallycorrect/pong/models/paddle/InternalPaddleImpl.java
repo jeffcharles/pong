@@ -12,14 +12,21 @@ final class InternalPaddleImpl implements InternalPaddle {
 	private final VelocityFactory m_velocityFactory;
 	private final OverlappingBehaviour m_overlappingBehaviour;
 	private final MovementBehaviour m_movementBehaviour;
+	private final InstructionToVelocityConverter m_instructionConverter;
+	
+	private final PaddleInstructionGetter m_instruction; 
 	
 	private Position m_position;
 	private Velocity m_velocity;
+	
+	private boolean m_velocityWasSet;
 	
 	public InternalPaddleImpl(
 			VelocityFactory velocityFactory,
 			OverlappingBehaviour overlappingBehaviour,
 			MovementBehaviour movementBehaviour,
+			InstructionToVelocityConverter instructionConverter,
+			PaddleInstructionGetter instruction,
 			Position position,
 			Velocity velocity
 		) {
@@ -27,8 +34,11 @@ final class InternalPaddleImpl implements InternalPaddle {
 		m_velocityFactory = velocityFactory;
 		m_overlappingBehaviour = overlappingBehaviour;
 		m_movementBehaviour = movementBehaviour;
+		m_instructionConverter = instructionConverter;
+		m_instruction = instruction;
 		m_position = position;
 		m_velocity = velocity;
+		m_velocityWasSet = false;
 	}
 	
 	@Override
@@ -85,6 +95,7 @@ final class InternalPaddleImpl implements InternalPaddle {
 				yAmountToMove,
 				yFramesPerMove
 			);
+		m_velocityWasSet = true;
 	}
 
 	@Override
@@ -95,6 +106,15 @@ final class InternalPaddleImpl implements InternalPaddle {
 
 	@Override
 	public void move() {
+		if(!m_velocityWasSet) {
+			m_velocity =
+					m_instructionConverter.convertInstructionToVelocity(
+							m_instruction.getPaddleInstruction(),
+							m_velocity
+						);
+		} else {
+			m_velocityWasSet = false;
+		}
 		m_position = m_movementBehaviour.move(m_position, m_velocity);
 	}
 

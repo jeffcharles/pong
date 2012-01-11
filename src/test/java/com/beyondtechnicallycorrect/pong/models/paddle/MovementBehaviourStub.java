@@ -9,6 +9,11 @@ final class MovementBehaviourStub implements MovementBehaviour {
 	private final Position m_endingPos;
 	private final Position m_startingPos;
 	
+	public MovementBehaviourStub() {
+		m_endingPos = null;
+		m_startingPos = null;
+	}
+	
 	public MovementBehaviourStub(
 			Position endingPos
 		) {

@@ -71,6 +71,7 @@
             <excludes>
               <exclude>com/beyondtechnicallycorrect/pong/**/*Module.class</exclude>
               <exclude>com/beyondtechnicallycorrect/pong/**/*FactoryImpl.class</exclude>
+              <exclude>com/beyondtechnicallycorrect/pong/models/paddle/PaddleInstruction.class</exclude>
             </excludes>
           </instrumentation>
         </configuration>
