@@ -8,14 +8,14 @@ public final class TestPaddleInstructionHolder {
 	
 	@Test
 	public void testGetPaddleInstruction() {
-		PaddleInstructionGetter holder = new PaddleInstructionHolder();
+		PaddleInstructionGetter holder = new PaddleInstructionHolderImpl();
 		PaddleInstruction currentInstruction = holder.getPaddleInstruction();
 		Assert.assertEquals(PaddleInstruction.STATIONARY, currentInstruction);
 	}
 	
 	@Test
 	public void testSetPaddleInstruction() {
-		PaddleInstructionHolder holder = new PaddleInstructionHolder();
+		PaddleInstructionHolderImpl holder = new PaddleInstructionHolderImpl();
 		PaddleInstructionSetter setter = holder;
 		final PaddleInstruction INSTRUCTION = PaddleInstruction.POS;
 		setter.setPaddleInstruction(INSTRUCTION);

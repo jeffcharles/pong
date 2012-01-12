@@ -4,11 +4,13 @@ import com.beyondtechnicallycorrect.pong.models.position.Position;
 import com.beyondtechnicallycorrect.pong.models.position.PositionFactory;
 import com.beyondtechnicallycorrect.pong.models.velocity.VelocityBehaviour;
 import com.beyondtechnicallycorrect.pong.models.velocity.VelocityResult;
+import com.google.inject.Inject;
 
 final class MovementBehaviourImpl implements MovementBehaviour {
 
 	private final PositionFactory m_positionFactory;
 	
+	@Inject
 	public MovementBehaviourImpl(
 			PositionFactory positionFactory
 		) {

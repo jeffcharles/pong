@@ -1,11 +1,13 @@
 package com.beyondtechnicallycorrect.pong.models.placeable;
 
 import com.beyondtechnicallycorrect.pong.models.position.*;
+import com.google.inject.Inject;
 
 final class OverlappingBehaviourImpl implements OverlappingBehaviour {
 
 	private final PositionFactory m_positionFactory;
 	
+	@Inject
 	public OverlappingBehaviourImpl(
 			PositionFactory positionFactory
 		) {

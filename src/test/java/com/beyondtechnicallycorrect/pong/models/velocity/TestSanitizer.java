@@ -177,5 +177,17 @@ public final class TestSanitizer {
 		assertDirectionalVelocityInfo(
 				SANITIZED_AMOUNT, SANITIZED_FRAMES, sanitized);
 	}
+	
+	@Test
+	public void testSanitize_WhenZeroAndOne_ShouldReturnZeroAndOne() {
+		final int AMOUNT_TO_MOVE = 0;
+		final int FRAMES = 1;
+		DirectionalVelocityInfo info =
+				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES);
+		DirectionalVelocityInfo sanitized = m_sanitizer.sanitize(info);
+		
+		assertDirectionalVelocityInfo(
+				AMOUNT_TO_MOVE, FRAMES, sanitized);
+	}
 
 }

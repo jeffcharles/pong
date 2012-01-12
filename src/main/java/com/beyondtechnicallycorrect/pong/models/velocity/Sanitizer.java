@@ -17,6 +17,10 @@ final class Sanitizer {
 		int amountToMove = info.getAmountToMove();
 		int frames = info.getFramesPerMove();
 		
+		if(amountToMove == 0) {
+			return new DirectionalVelocityInfo(amountToMove, 1);
+		}
+		
 		boolean greaterThanOne =
 				Math.abs(amountToMove) / frames >= 1;
 		int quotient = Math.abs(greaterThanOne ?

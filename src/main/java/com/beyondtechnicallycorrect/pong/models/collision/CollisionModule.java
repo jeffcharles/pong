@@ -6,8 +6,8 @@ public final class CollisionModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		bind(CollisionBehaviours.class)
-			.to(CollisionBehavioursImpl.class);
+		bind(CollisionBehavioursFactory.class)
+			.to(CollisionBehavioursFactoryImpl.class);
 	}
 
 }
