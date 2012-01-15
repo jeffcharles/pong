@@ -17,19 +17,25 @@ final class PaddleFactoryImpl implements PaddleFactory {
 	private final OverlappingBehaviour m_overlappingBehaviour;
 	private final MovementBehaviour m_movementBehaviour;
 	private final CollisionBehavioursFactory m_collisionBehavioursFactory;
+	private final com.beyondtechnicallycorrect.pong.models.collision.WallCollisionBehaviour m_wallCollisionBehaviour;
+	private final WallCollisionAdjustVelocityDelegate m_adjustVelocityDelegate;
 	
 	@Inject
 	public PaddleFactoryImpl(
 			VelocityFactory velocityFactory,
 			OverlappingBehaviour overlappingBehaviour,
 			MovementBehaviour movementBehaviour,
-			CollisionBehavioursFactory collisionBehavioursFactory
+			CollisionBehavioursFactory collisionBehavioursFactory,
+			com.beyondtechnicallycorrect.pong.models.collision.WallCollisionBehaviour wallCollisionBehaviour,
+			WallCollisionAdjustVelocityDelegate adjustVelocityDelegate
 		) {
 		
 		m_velocityFactory = velocityFactory;
 		m_overlappingBehaviour = overlappingBehaviour;
 		m_movementBehaviour = movementBehaviour;
 		m_collisionBehavioursFactory = collisionBehavioursFactory;
+		m_wallCollisionBehaviour = wallCollisionBehaviour;
+		m_adjustVelocityDelegate = adjustVelocityDelegate;
 	}
 	
 	@Override
@@ -59,7 +65,11 @@ final class PaddleFactoryImpl implements PaddleFactory {
 				m_collisionBehavioursFactory.create();
 		
 		CollisionBehaviour<Wall> wallBehaviour =
-				new WallCollisionBehaviour(internalPaddle);
+				new WallCollisionBehaviour(
+						m_wallCollisionBehaviour,
+						m_adjustVelocityDelegate,
+						internalPaddle
+					);
 		
 		collisionBehaviours.addBehaviour(wallBehaviour);
 		

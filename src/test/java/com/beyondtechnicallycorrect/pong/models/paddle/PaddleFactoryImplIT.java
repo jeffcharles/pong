@@ -38,12 +38,18 @@ public final class PaddleFactoryImplIT {
 				injector.getInstance(MovementBehaviour.class);
 		CollisionBehavioursFactory collisionBehavioursFactory =
 				injector.getInstance(CollisionBehavioursFactory.class);
+		com.beyondtechnicallycorrect.pong.models.collision.WallCollisionBehaviour wcb =
+				injector.getInstance(com.beyondtechnicallycorrect.pong.models.collision.WallCollisionBehaviour.class);
+		WallCollisionAdjustVelocityDelegate del =
+				injector.getInstance(WallCollisionAdjustVelocityDelegate.class);
 		
 		PaddleFactory paddleFactory = new PaddleFactoryImpl(
 				velocityFactory,
 				overlappingBehaviour,
 				movementBehaviour,
-				collisionBehavioursFactory
+				collisionBehavioursFactory,
+				wcb,
+				del
 			);
 		
 		PaddleInstructionGetter instruction = new PaddleInstructionHolderImpl();
@@ -72,6 +78,10 @@ public final class PaddleFactoryImplIT {
 				injector.getInstance(OverlappingBehaviour.class);
 		MovementBehaviour movementBehaviour =
 				injector.getInstance(MovementBehaviour.class);
+		com.beyondtechnicallycorrect.pong.models.collision.WallCollisionBehaviour wcb =
+				injector.getInstance(com.beyondtechnicallycorrect.pong.models.collision.WallCollisionBehaviour.class);
+		WallCollisionAdjustVelocityDelegate del =
+				injector.getInstance(WallCollisionAdjustVelocityDelegate.class);
 		
 		CollisionBehavioursStub cb = new CollisionBehavioursStub();
 		CollisionBehavioursFactory collisionBehavioursFactory =
@@ -81,7 +91,9 @@ public final class PaddleFactoryImplIT {
 				velocityFactory,
 				overlappingBehaviour,
 				movementBehaviour,
-				collisionBehavioursFactory
+				collisionBehavioursFactory,
+				wcb,
+				del
 			);
 		
 		PaddleInstructionGetter instruction = new PaddleInstructionHolderImpl();

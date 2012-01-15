@@ -9,6 +9,7 @@ public final class PaddleModule extends AbstractModule {
 		bind(PaddleFactory.class).to(PaddleFactoryImpl.class);
 		bind(PaddleInstructionHolderFactory.class).to(
 				PaddleInstructionHolderFactoryImpl.class);
+		bind(WallCollisionAdjustVelocityDelegate.class);
 	}
 
 }
