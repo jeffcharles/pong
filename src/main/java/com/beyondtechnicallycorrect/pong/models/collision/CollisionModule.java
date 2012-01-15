@@ -8,6 +8,8 @@ public final class CollisionModule extends AbstractModule {
 	protected void configure() {
 		bind(CollisionBehavioursFactory.class)
 			.to(CollisionBehavioursFactoryImpl.class);
+		bind(WallCollisionBehaviour.class)
+			.to(WallCollisionBehaviourImpl.class);
 	}
 
 }
