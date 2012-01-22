@@ -14,6 +14,7 @@ final class InternalBallStub implements InternalBall {
 	private final int m_yAmountToMove;
 	private final int m_yFramesPerMove;
 	
+	private boolean m_setVelocityCalled;
 	private int m_setVelocityXAmountArg;
 	private int m_setVelocityXFramesArg;
 	private int m_setVelocityYAmountArg;
@@ -30,6 +31,7 @@ final class InternalBallStub implements InternalBall {
 		m_yAmountToMove = 0;
 		m_yFramesPerMove = 0;
 		
+		m_setVelocityCalled = false;
 		m_setVelocityXAmountArg = 0;
 		m_setVelocityXFramesArg = 0;
 		m_setVelocityYAmountArg = 0;
@@ -112,6 +114,7 @@ final class InternalBallStub implements InternalBall {
 			int yFramesPerMove
 		) {
 		
+		m_setVelocityCalled = true;
 		m_setVelocityXAmountArg = xAmountToMove;
 		m_setVelocityXFramesArg = xFramesPerMove;
 		m_setVelocityYAmountArg = yAmountToMove;
@@ -134,6 +137,10 @@ final class InternalBallStub implements InternalBall {
 	public void unMove() {
 		// TODO Auto-generated method stub
 
+	}
+	
+	public boolean getSetVelocityCalled() {
+		return m_setVelocityCalled;
 	}
 	
 	public int getSetVelocityXAmountArg() {
