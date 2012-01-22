@@ -14,6 +14,8 @@ final class InternalBallStub implements InternalBall {
 	private final int m_yAmountToMove;
 	private final int m_yFramesPerMove;
 	
+	private final boolean m_isOverlapping;
+	
 	private boolean m_setVelocityCalled;
 	private int m_setVelocityXAmountArg;
 	private int m_setVelocityXFramesArg;
@@ -30,6 +32,34 @@ final class InternalBallStub implements InternalBall {
 		m_xFramesPerMove = 0;
 		m_yAmountToMove = 0;
 		m_yFramesPerMove = 0;
+		
+		m_isOverlapping = false;
+		
+		m_setVelocityCalled = false;
+		m_setVelocityXAmountArg = 0;
+		m_setVelocityXFramesArg = 0;
+		m_setVelocityYAmountArg = 0;
+		m_setVelocityYFramesArg = 0;
+	}
+	
+	public InternalBallStub(
+			int x1,
+			int x2,
+			int y1,
+			int y2
+		) {
+		
+		m_x1 = x1;
+		m_x2 = x2;
+		m_y1 = y1;
+		m_y2 = y2;
+		
+		m_xAmountToMove = 0;
+		m_xFramesPerMove = 0;
+		m_yAmountToMove = 0;
+		m_yFramesPerMove = 0;
+		
+		m_isOverlapping = false;
 		
 		m_setVelocityCalled = false;
 		m_setVelocityXAmountArg = 0;
@@ -59,12 +89,36 @@ final class InternalBallStub implements InternalBall {
 		m_yAmountToMove = yAmountToMove;
 		m_yFramesPerMove = yFramesPerMove;
 		
+		m_isOverlapping = false;
+		
 		m_setVelocityXAmountArg = 0;
 		m_setVelocityXFramesArg = 0;
 		m_setVelocityYAmountArg = 0;
 		m_setVelocityYFramesArg = 0;
 	}
 	
+	public InternalBallStub(
+			boolean isOverlapping
+		) {
+		
+		m_x1 = 0;
+		m_x2 = 0;
+		m_y1 = 0;
+		m_y2 = 0;
+		
+		m_xAmountToMove = 0;
+		m_xFramesPerMove = 0;
+		m_yAmountToMove = 0;
+		m_yFramesPerMove = 0;
+		
+		m_isOverlapping = isOverlapping;
+		
+		m_setVelocityCalled = false;
+		m_setVelocityXAmountArg = 0;
+		m_setVelocityXFramesArg = 0;
+		m_setVelocityYAmountArg = 0;
+		m_setVelocityYFramesArg = 0;
+	}
 	
 	@Override
 	public int getX1() {
@@ -123,8 +177,7 @@ final class InternalBallStub implements InternalBall {
 
 	@Override
 	public boolean isOverlapping(Placeable otherModel) {
-		// TODO Auto-generated method stub
-		return false;
+		return m_isOverlapping;
 	}
 
 	@Override
