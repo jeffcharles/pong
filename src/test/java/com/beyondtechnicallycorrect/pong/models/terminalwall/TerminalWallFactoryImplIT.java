@@ -3,6 +3,8 @@ package com.beyondtechnicallycorrect.pong.models.terminalwall;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.beyondtechnicallycorrect.pong.models.collision.CollisionBehavioursFactory;
+import com.beyondtechnicallycorrect.pong.models.collision.CollisionModule;
 import com.beyondtechnicallycorrect.pong.models.player.Player;
 import com.beyondtechnicallycorrect.pong.models.position.PositionFactory;
 import com.beyondtechnicallycorrect.pong.models.position.PositionModule;
@@ -13,9 +15,15 @@ public final class TerminalWallFactoryImplIT {
 	
 	@Test
 	public void testCreate() {
-		Injector injector = Guice.createInjector(new PositionModule());
+		Injector injector = Guice.createInjector(
+				new PositionModule(),
+				new CollisionModule()
+			);
 		PositionFactory posFactory = injector.getInstance(PositionFactory.class);
-		TerminalWallFactory factory = new TerminalWallFactoryImpl(posFactory);
+		CollisionBehavioursFactory cbFactory =
+				injector.getInstance(CollisionBehavioursFactory.class);
+		TerminalWallFactory factory =
+				new TerminalWallFactoryImpl(posFactory, cbFactory);
 		
 		final int X1 = 1;
 		final int X2 = 2;

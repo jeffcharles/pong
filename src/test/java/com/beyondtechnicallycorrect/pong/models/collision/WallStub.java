@@ -1,5 +1,6 @@
 package com.beyondtechnicallycorrect.pong.models.collision;
 
+import com.beyondtechnicallycorrect.pong.models.placeable.Placeable;
 import com.beyondtechnicallycorrect.pong.models.wall.Wall;
 
 final class WallStub implements Wall {
@@ -40,6 +41,12 @@ final class WallStub implements Wall {
 	@Override
 	public int getY2() {
 		return m_y2;
+	}
+
+	@Override
+	public void collide(Placeable objectCollidedWith) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

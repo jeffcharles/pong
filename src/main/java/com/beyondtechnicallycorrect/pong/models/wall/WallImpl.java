@@ -1,5 +1,6 @@
 package com.beyondtechnicallycorrect.pong.models.wall;
 
+import com.beyondtechnicallycorrect.pong.models.placeable.Placeable;
 import com.beyondtechnicallycorrect.pong.models.position.Position;
 
 final class WallImpl implements Wall {
@@ -31,6 +32,11 @@ final class WallImpl implements Wall {
 	@Override
 	public int getY2() {
 		return m_position.getY2();
+	}
+
+	@Override
+	public void collide(Placeable objectCollidedWith) {
+		// Do nothing
 	}
 
 }

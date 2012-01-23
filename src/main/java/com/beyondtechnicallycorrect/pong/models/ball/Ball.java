@@ -1,7 +1,7 @@
 package com.beyondtechnicallycorrect.pong.models.ball;
 
-import com.beyondtechnicallycorrect.pong.models.collision.Collidable;
+import com.beyondtechnicallycorrect.pong.models.collision.MovableCollidable;
 
-public interface Ball extends Collidable {
+public interface Ball extends MovableCollidable {
 
 }

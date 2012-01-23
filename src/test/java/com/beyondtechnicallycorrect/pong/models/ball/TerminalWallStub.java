@@ -1,5 +1,6 @@
 package com.beyondtechnicallycorrect.pong.models.ball;
 
+import com.beyondtechnicallycorrect.pong.models.placeable.Placeable;
 import com.beyondtechnicallycorrect.pong.models.player.Player;
 import com.beyondtechnicallycorrect.pong.models.terminalwall.TerminalWall;
 
@@ -47,6 +48,12 @@ final class TerminalWallStub implements TerminalWall {
 	public Player getPlayer() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void collide(Placeable objectCollidedWith) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

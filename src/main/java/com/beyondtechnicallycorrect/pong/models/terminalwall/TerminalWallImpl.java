@@ -1,5 +1,7 @@
 package com.beyondtechnicallycorrect.pong.models.terminalwall;
 
+import com.beyondtechnicallycorrect.pong.models.collision.CollisionBehaviours;
+import com.beyondtechnicallycorrect.pong.models.placeable.Placeable;
 import com.beyondtechnicallycorrect.pong.models.player.Player;
 import com.beyondtechnicallycorrect.pong.models.position.Position;
 
@@ -7,14 +9,17 @@ final class TerminalWallImpl implements TerminalWall {
 	
 	private final Position m_position;
 	private final Player m_player;
+	private final CollisionBehaviours m_collisionBehaviours;
 	
 	public TerminalWallImpl(
 			Position position,
-			Player player
+			Player player,
+			CollisionBehaviours collisionBehaviours
 		) {
 		
 		m_position = position;
 		m_player = player;
+		m_collisionBehaviours = collisionBehaviours;
 	}
 
 	@Override
@@ -40,6 +45,11 @@ final class TerminalWallImpl implements TerminalWall {
 	@Override
 	public Player getPlayer() {
 		return m_player;
+	}
+
+	@Override
+	public void collide(Placeable objectCollidedWith) {
+		m_collisionBehaviours.collide(objectCollidedWith);
 	}
 
 }
