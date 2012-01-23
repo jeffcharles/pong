@@ -13,7 +13,15 @@ public final class GameModule extends AbstractModule {
 	}
 	
 	@Provides
-	private MatchStateNotificationService provideService() {
+	public MatchStatePublisher providePublisher() {
+		if(m_service == null) {
+			m_service = new MatchStateNotificationService();
+		}
+		return m_service;
+	}
+	
+	@Provides
+	public MatchStateSubscription provideSubscription() {
 		if(m_service == null) {
 			m_service = new MatchStateNotificationService();
 		}
