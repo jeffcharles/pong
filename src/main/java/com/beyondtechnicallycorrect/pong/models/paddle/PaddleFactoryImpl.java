@@ -18,7 +18,6 @@ final class PaddleFactoryImpl implements PaddleFactory {
 	private final MovementBehaviour m_movementBehaviour;
 	private final CollisionBehavioursFactory m_collisionBehavioursFactory;
 	private final com.beyondtechnicallycorrect.pong.models.collision.WallCollisionBehaviour m_wallCollisionBehaviour;
-	private final WallCollisionAdjustVelocityDelegate m_adjustVelocityDelegate;
 	
 	@Inject
 	public PaddleFactoryImpl(
@@ -26,8 +25,7 @@ final class PaddleFactoryImpl implements PaddleFactory {
 			OverlappingBehaviour overlappingBehaviour,
 			MovementBehaviour movementBehaviour,
 			CollisionBehavioursFactory collisionBehavioursFactory,
-			com.beyondtechnicallycorrect.pong.models.collision.WallCollisionBehaviour wallCollisionBehaviour,
-			WallCollisionAdjustVelocityDelegate adjustVelocityDelegate
+			com.beyondtechnicallycorrect.pong.models.collision.WallCollisionBehaviour wallCollisionBehaviour
 		) {
 		
 		m_velocityFactory = velocityFactory;
@@ -35,7 +33,6 @@ final class PaddleFactoryImpl implements PaddleFactory {
 		m_movementBehaviour = movementBehaviour;
 		m_collisionBehavioursFactory = collisionBehavioursFactory;
 		m_wallCollisionBehaviour = wallCollisionBehaviour;
-		m_adjustVelocityDelegate = adjustVelocityDelegate;
 	}
 	
 	@Override
@@ -64,10 +61,13 @@ final class PaddleFactoryImpl implements PaddleFactory {
 		CollisionBehaviours collisionBehaviours =
 				m_collisionBehavioursFactory.create();
 		
+		WallCollisionAdjustVelocityDelegate adjustVelocityDelegate =
+				new WallCollisionAdjustVelocityDelegate();
+		
 		CollisionBehaviour<Wall> wallBehaviour =
 				new WallCollisionBehaviour(
 						m_wallCollisionBehaviour,
-						m_adjustVelocityDelegate,
+						adjustVelocityDelegate,
 						internalPaddle
 					);
 		
