@@ -2,7 +2,7 @@ package com.beyondtechnicallycorrect.pong.models.frame;
 
 import com.beyondtechnicallycorrect.pong.models.collision.Collidable;
 
-public interface FrameElement {
+interface FrameElement {
 	
 	public boolean isOverlapping(FrameElement element);
 	public void move();

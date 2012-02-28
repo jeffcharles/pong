@@ -58,4 +58,24 @@ final class PaddleImpl implements Paddle {
 		return m_internalPaddle.getY2();
 	}
 
+	@Override
+	public int getXAmountToMove() {
+		return m_internalPaddle.getXAmountToMove();
+	}
+
+	@Override
+	public int getXFramesPerMove() {
+		return m_internalPaddle.getXFramesPerMove();
+	}
+
+	@Override
+	public int getYAmountToMove() {
+		return m_internalPaddle.getYAmountToMove();
+	}
+
+	@Override
+	public int getYFramesPerMove() {
+		return m_internalPaddle.getYFramesPerMove();
+	}
+
 }

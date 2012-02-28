@@ -99,5 +99,45 @@ public final class TestBallImpl {
 		Ball ball = new BallImpl(internalBall, cb);
 		Assert.assertEquals(Y2, ball.getY2());
 	}
+	
+	@Test
+	public void testGetXAmountToMove() {
+		final int X_AMOUNT = 1;
+		InternalBall internalBall =
+				new InternalBallStub(0, 0, 0, 0, X_AMOUNT, 0, 0, 0);
+		CollisionBehaviours cb = new CollisionBehavioursStub();
+		Ball ball = new BallImpl(internalBall, cb);
+		Assert.assertEquals(X_AMOUNT, ball.getXAmountToMove());
+	}
+	
+	@Test
+	public void testGetXFramesPerMove() {
+		final int X_FRAMES = 2;
+		InternalBall internalBall =
+				new InternalBallStub(0, 0, 0, 0, 0, X_FRAMES, 0, 0);
+		CollisionBehaviours cb = new CollisionBehavioursStub();
+		Ball ball = new BallImpl(internalBall, cb);
+		Assert.assertEquals(X_FRAMES, ball.getXFramesPerMove());
+	}
+	
+	@Test
+	public void testGetYAmountToMove() {
+		final int Y_AMOUNT = 2;
+		InternalBall internalBall =
+				new InternalBallStub(0, 0, 0, 0, 0, 0, Y_AMOUNT, 0);
+		CollisionBehaviours cb = new CollisionBehavioursStub();
+		Ball ball = new BallImpl(internalBall, cb);
+		Assert.assertEquals(Y_AMOUNT, ball.getYAmountToMove());
+	}
+	
+	@Test
+	public void testGetYFramesPerMove() {
+		final int Y_FRAMES = 1;
+		InternalBall internalBall =
+				new InternalBallStub(0, 0, 0, 0, 0, 0, 0, Y_FRAMES);
+		CollisionBehaviours cb = new CollisionBehavioursStub();
+		Ball ball = new BallImpl(internalBall, cb);
+		Assert.assertEquals(Y_FRAMES, ball.getYFramesPerMove());
+	}
 
 }

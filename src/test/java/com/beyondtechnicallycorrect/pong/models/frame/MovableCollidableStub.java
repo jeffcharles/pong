@@ -65,4 +65,28 @@ final class MovableCollidableStub implements MovableCollidable {
 		return m_isOverlapping;
 	}
 
+	@Override
+	public int getXAmountToMove() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getXFramesPerMove() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getYAmountToMove() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getYFramesPerMove() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

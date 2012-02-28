@@ -57,4 +57,24 @@ final class BallImpl implements Ball {
 		m_internalBall.unMove();
 	}
 
+	@Override
+	public int getXAmountToMove() {
+		return m_internalBall.getXAmountToMove();
+	}
+
+	@Override
+	public int getXFramesPerMove() {
+		return m_internalBall.getXFramesPerMove();
+	}
+
+	@Override
+	public int getYAmountToMove() {
+		return m_internalBall.getYAmountToMove();
+	}
+
+	@Override
+	public int getYFramesPerMove() {
+		return m_internalBall.getYFramesPerMove();
+	}
+
 }

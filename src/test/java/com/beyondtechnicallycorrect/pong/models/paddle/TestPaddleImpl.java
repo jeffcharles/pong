@@ -107,5 +107,45 @@ public final class TestPaddleImpl {
 		Paddle paddle = new PaddleImpl(internalPaddle, cb);
 		Assert.assertEquals(Y2, paddle.getY2());
 	}
+	
+	@Test
+	public void testGetXAmountToMove() {
+		final int X_AMOUNT = 1;
+		InternalPaddle internalPaddle =
+				new InternalPaddleStub(0, 0, 0, 0, X_AMOUNT, 0, 0, 0);
+		CollisionBehaviours cb = new CollisionBehavioursStub();
+		Paddle paddle = new PaddleImpl(internalPaddle, cb);
+		Assert.assertEquals(X_AMOUNT, paddle.getXAmountToMove());
+	}
+	
+	@Test
+	public void testGetXFramesPerMove() {
+		final int X_FRAMES = 2;
+		InternalPaddle internalPaddle =
+				new InternalPaddleStub(0, 0, 0, 0, 0, X_FRAMES, 0, 0);
+		CollisionBehaviours cb = new CollisionBehavioursStub();
+		Paddle paddle = new PaddleImpl(internalPaddle, cb);
+		Assert.assertEquals(X_FRAMES, paddle.getXFramesPerMove());
+	}
+	
+	@Test
+	public void testGetYAmountToMove() {
+		final int Y_AMOUNT = 2;
+		InternalPaddle internalPaddle =
+				new InternalPaddleStub(0, 0, 0, 0, 0, 0, Y_AMOUNT, 0);
+		CollisionBehaviours cb = new CollisionBehavioursStub();
+		Paddle paddle = new PaddleImpl(internalPaddle, cb);
+		Assert.assertEquals(Y_AMOUNT, paddle.getYAmountToMove());
+	}
+	
+	@Test
+	public void testGetYFramesPerMove() {
+		final int Y_FRAMES = 1;
+		InternalPaddle internalPaddle =
+				new InternalPaddleStub(0, 0, 0, 0, 0, 0, 0, Y_FRAMES);
+		CollisionBehaviours cb = new CollisionBehavioursStub();
+		Paddle paddle = new PaddleImpl(internalPaddle, cb);
+		Assert.assertEquals(Y_FRAMES, paddle.getYFramesPerMove());
+	}
 
 }
