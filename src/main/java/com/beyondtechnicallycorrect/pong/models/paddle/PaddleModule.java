@@ -7,8 +7,7 @@ public final class PaddleModule extends AbstractModule {
 	@Override
 	protected void configure() {
 		bind(PaddleFactory.class).to(PaddleFactoryImpl.class);
-		bind(PaddleInstructionHolderFactory.class).to(
-				PaddleInstructionHolderFactoryImpl.class);
+		bind(PaddleInstructionHolder.class).to(PaddleInstructionHolderImpl.class);
 	}
 
 }

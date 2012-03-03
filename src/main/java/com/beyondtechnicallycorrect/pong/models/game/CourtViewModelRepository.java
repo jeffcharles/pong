@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import com.beyondtechnicallycorrect.pong.models.collision.Collidable;
 import com.beyondtechnicallycorrect.pong.models.collision.MovableCollidable;
+import com.google.inject.Inject;
 
 final class CourtViewModelRepository implements CourtViewModelGetter,
 		CourtViewModelInitializer, CourtViewModelUpdater {
@@ -19,6 +20,7 @@ final class CourtViewModelRepository implements CourtViewModelGetter,
 	
 	private CourtViewModel m_currentViewModel;
 	
+	@Inject
 	public CourtViewModelRepository(
 			CollidableToElementAdaptor adaptor
 		) {

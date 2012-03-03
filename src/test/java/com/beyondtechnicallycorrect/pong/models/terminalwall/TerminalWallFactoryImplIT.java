@@ -3,13 +3,19 @@ package com.beyondtechnicallycorrect.pong.models.terminalwall;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.beyondtechnicallycorrect.pong.models.ball.BallModule;
 import com.beyondtechnicallycorrect.pong.models.collision.CollisionBehavioursFactory;
 import com.beyondtechnicallycorrect.pong.models.collision.CollisionModule;
 import com.beyondtechnicallycorrect.pong.models.game.GameModule;
 import com.beyondtechnicallycorrect.pong.models.game.MatchStatePublisher;
+import com.beyondtechnicallycorrect.pong.models.movement.MovementModule;
+import com.beyondtechnicallycorrect.pong.models.paddle.PaddleModule;
+import com.beyondtechnicallycorrect.pong.models.placeable.PlaceableModule;
 import com.beyondtechnicallycorrect.pong.models.player.Player;
 import com.beyondtechnicallycorrect.pong.models.position.PositionFactory;
 import com.beyondtechnicallycorrect.pong.models.position.PositionModule;
+import com.beyondtechnicallycorrect.pong.models.velocity.VelocityModule;
+import com.beyondtechnicallycorrect.pong.models.wall.WallModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
@@ -17,11 +23,7 @@ public final class TerminalWallFactoryImplIT {
 	
 	@Test
 	public void testCreate_ShouldSetPositionsCorrectly() {
-		Injector injector = Guice.createInjector(
-				new PositionModule(),
-				new CollisionModule(),
-				new GameModule()
-			);
+		Injector injector = getInjector();
 		PositionFactory posFactory = injector.getInstance(PositionFactory.class);
 		CollisionBehavioursFactory cbFactory =
 				injector.getInstance(CollisionBehavioursFactory.class);
@@ -45,11 +47,7 @@ public final class TerminalWallFactoryImplIT {
 	
 	@Test
 	public void testCreate_ShouldAddBallCollisionBehaviour() {
-		Injector injector = Guice.createInjector(
-				new PositionModule(),
-				new CollisionModule(),
-				new GameModule()
-			);
+		Injector injector = getInjector();
 		PositionFactory posFactory = injector.getInstance(PositionFactory.class);
 		MatchStatePublisher publisher =
 				injector.getInstance(MatchStatePublisher.class);
@@ -64,6 +62,22 @@ public final class TerminalWallFactoryImplIT {
 		factory.create(0, 1, 0, 1, player);
 		
 		Assert.assertTrue(cb.containsBallCollisionBehaviour());
+	}
+	
+	private Injector getInjector() {
+		Injector injector = Guice.createInjector(
+				new BallModule(),
+				new PositionModule(),
+				new CollisionModule(),
+				new GameModule(),
+				new MovementModule(),
+				new PaddleModule(),
+				new PlaceableModule(),
+				new TerminalWallModule(),
+				new VelocityModule(),
+				new WallModule()
+			);
+		return injector;
 	}
 
 }
