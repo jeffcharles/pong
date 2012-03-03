@@ -11,6 +11,7 @@ final class CourtViewModelRepository implements CourtViewModelGetter,
 		CourtViewModelInitializer, CourtViewModelUpdater {
 	
 	private final CollidableToElementAdaptor m_adaptor;
+	private final CourtViewModelChangePublisher m_changePublisher;
 	
 	private MovableCollidable m_playerPaddle;
 	private MovableCollidable m_opponentPaddle;
@@ -22,10 +23,12 @@ final class CourtViewModelRepository implements CourtViewModelGetter,
 	
 	@Inject
 	public CourtViewModelRepository(
-			CollidableToElementAdaptor adaptor
+			CollidableToElementAdaptor adaptor,
+			CourtViewModelChangePublisher changePublisher
 		) {
 		
 		m_adaptor = adaptor;
+		m_changePublisher = changePublisher;
 	}
 
 	@Override
@@ -60,6 +63,7 @@ final class CourtViewModelRepository implements CourtViewModelGetter,
 				wallElems,
 				terminalWallElems
 			);
+		m_changePublisher.viewModelChange();
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package com.beyondtechnicallycorrect.pong.models.game;
 
+import static org.mockito.Mockito.*;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -18,6 +20,8 @@ public final class TestCourtViewModelRepository {
 		
 		CollidableToElementAdaptor adaptor =
 				new CollidableToElementAdaptorStub();
+		CourtViewModelChangePublisher changePublisher =
+				new CourtViewModelChangePublisherStub();
 		
 		MovableCollidable playerPaddle =
 				new MovableCollidableStub(PLAYER_PADDLE_X1);
@@ -31,7 +35,8 @@ public final class TestCourtViewModelRepository {
 		Collidable terminalWall = new CollidableStub(0);
 		terminalWalls.add(terminalWall);
 		
-		CourtViewModelRepository repo = new CourtViewModelRepository(adaptor);
+		CourtViewModelRepository repo =
+				new CourtViewModelRepository(adaptor, changePublisher);
 		
 		repo.initialize(
 				playerPaddle,
@@ -52,6 +57,8 @@ public final class TestCourtViewModelRepository {
 		
 		CollidableToElementAdaptor adaptor =
 				new CollidableToElementAdaptorStub();
+		CourtViewModelChangePublisher changePublisher =
+				new CourtViewModelChangePublisherStub();
 		
 		MovableCollidable playerPaddle =
 				new MovableCollidableStub(0);
@@ -65,7 +72,8 @@ public final class TestCourtViewModelRepository {
 		Collidable terminalWall = new CollidableStub(0);
 		terminalWalls.add(terminalWall);
 		
-		CourtViewModelRepository repo = new CourtViewModelRepository(adaptor);
+		CourtViewModelRepository repo =
+				new CourtViewModelRepository(adaptor, changePublisher);
 		
 		repo.initialize(
 				playerPaddle,
@@ -86,6 +94,8 @@ public final class TestCourtViewModelRepository {
 		
 		CollidableToElementAdaptor adaptor =
 				new CollidableToElementAdaptorStub();
+		CourtViewModelChangePublisher changePublisher =
+				new CourtViewModelChangePublisherStub();
 		
 		MovableCollidable playerPaddle =
 				new MovableCollidableStub(0);
@@ -99,7 +109,8 @@ public final class TestCourtViewModelRepository {
 		Collidable terminalWall = new CollidableStub(0);
 		terminalWalls.add(terminalWall);
 		
-		CourtViewModelRepository repo = new CourtViewModelRepository(adaptor);
+		CourtViewModelRepository repo =
+				new CourtViewModelRepository(adaptor, changePublisher);
 		
 		repo.initialize(
 				playerPaddle,
@@ -120,6 +131,8 @@ public final class TestCourtViewModelRepository {
 		
 		CollidableToElementAdaptor adaptor =
 				new CollidableToElementAdaptorStub();
+		CourtViewModelChangePublisher changePublisher =
+				new CourtViewModelChangePublisherStub();
 		
 		MovableCollidable playerPaddle =
 				new MovableCollidableStub(0);
@@ -133,7 +146,8 @@ public final class TestCourtViewModelRepository {
 		Collidable terminalWall = new CollidableStub(0);
 		terminalWalls.add(terminalWall);
 		
-		CourtViewModelRepository repo = new CourtViewModelRepository(adaptor);
+		CourtViewModelRepository repo =
+				new CourtViewModelRepository(adaptor, changePublisher);
 		
 		repo.initialize(
 				playerPaddle,
@@ -154,6 +168,8 @@ public final class TestCourtViewModelRepository {
 		
 		CollidableToElementAdaptor adaptor =
 				new CollidableToElementAdaptorStub();
+		CourtViewModelChangePublisher changePublisher =
+				new CourtViewModelChangePublisherStub();
 		
 		MovableCollidable playerPaddle =
 				new MovableCollidableStub(0);
@@ -167,7 +183,8 @@ public final class TestCourtViewModelRepository {
 		Collidable terminalWall = new CollidableStub(TERMINAL_WALL_X1);
 		terminalWalls.add(terminalWall);
 		
-		CourtViewModelRepository repo = new CourtViewModelRepository(adaptor);
+		CourtViewModelRepository repo =
+				new CourtViewModelRepository(adaptor, changePublisher);
 		
 		repo.initialize(
 				playerPaddle,
@@ -184,12 +201,47 @@ public final class TestCourtViewModelRepository {
 	}
 	
 	@Test
+	public void initialize_ShouldPublishViewModelChangeNotification() {
+		CollidableToElementAdaptor adaptor =
+				new CollidableToElementAdaptorStub();
+		CourtViewModelChangePublisher changePublisher =
+				mock(CourtViewModelChangePublisher.class);
+		
+		MovableCollidable playerPaddle =
+				new MovableCollidableStub(0);
+		MovableCollidable opponentPaddle =
+				new MovableCollidableStub(0);
+		MovableCollidable ball = new MovableCollidableStub(0);
+		Collection<Collidable> walls = new ArrayList<Collidable>();
+		Collidable wall = new CollidableStub(0);
+		walls.add(wall);
+		Collection<Collidable> terminalWalls = new ArrayList<Collidable>();
+		Collidable terminalWall = new CollidableStub(0);
+		terminalWalls.add(terminalWall);
+		
+		CourtViewModelRepository repo =
+				new CourtViewModelRepository(adaptor, changePublisher);
+		
+		repo.initialize(
+				playerPaddle,
+				opponentPaddle,
+				ball,
+				walls,
+				terminalWalls
+			);
+		
+		verify(changePublisher).viewModelChange();
+	}
+	
+	@Test
 	public void update_ShouldUpdatePositionOfPlayerPaddle() {
 		final int STARTING_PLAYER_PADDLE_X1 = 2;
 		final int UPDATED_PLAYER_PADDLE_X1 = 3;
 		
 		CollidableToElementAdaptor adaptor =
 				new CollidableToElementAdaptorStub();
+		CourtViewModelChangePublisher changePublisher =
+				new CourtViewModelChangePublisherStub();
 		
 		MovableCollidableStub playerPaddle =
 				new MovableCollidableStub(STARTING_PLAYER_PADDLE_X1);
@@ -203,7 +255,8 @@ public final class TestCourtViewModelRepository {
 		Collidable terminalWall = new CollidableStub(0);
 		terminalWalls.add(terminalWall);
 		
-		CourtViewModelRepository repo = new CourtViewModelRepository(adaptor);
+		CourtViewModelRepository repo =
+				new CourtViewModelRepository(adaptor, changePublisher);
 		
 		repo.initialize(
 				playerPaddle,
@@ -227,6 +280,8 @@ public final class TestCourtViewModelRepository {
 		
 		CollidableToElementAdaptor adaptor =
 				new CollidableToElementAdaptorStub();
+		CourtViewModelChangePublisher changePublisher =
+				new CourtViewModelChangePublisherStub();
 		
 		MovableCollidable playerPaddle =
 				new MovableCollidableStub(0);
@@ -240,7 +295,8 @@ public final class TestCourtViewModelRepository {
 		Collidable terminalWall = new CollidableStub(0);
 		terminalWalls.add(terminalWall);
 		
-		CourtViewModelRepository repo = new CourtViewModelRepository(adaptor);
+		CourtViewModelRepository repo =
+				new CourtViewModelRepository(adaptor, changePublisher);
 		
 		repo.initialize(
 				playerPaddle,
@@ -264,6 +320,8 @@ public final class TestCourtViewModelRepository {
 		
 		CollidableToElementAdaptor adaptor =
 				new CollidableToElementAdaptorStub();
+		CourtViewModelChangePublisher changePublisher =
+				new CourtViewModelChangePublisherStub();
 		
 		MovableCollidable playerPaddle =
 				new MovableCollidableStub(0);
@@ -277,7 +335,8 @@ public final class TestCourtViewModelRepository {
 		Collidable terminalWall = new CollidableStub(0);
 		terminalWalls.add(terminalWall);
 		
-		CourtViewModelRepository repo = new CourtViewModelRepository(adaptor);
+		CourtViewModelRepository repo =
+				new CourtViewModelRepository(adaptor, changePublisher);
 		
 		repo.initialize(
 				playerPaddle,
@@ -292,6 +351,40 @@ public final class TestCourtViewModelRepository {
 		int updatedBallX1 = viewModel.getBall().getX1();
 		
 		Assert.assertEquals(UPDATED_BALL_X1, updatedBallX1);
+	}
+	
+	@Test
+	public void update_ShouldPublishViewModelChangeNotification() {
+		CollidableToElementAdaptor adaptor =
+				new CollidableToElementAdaptorStub();
+		CourtViewModelChangePublisher changePublisher =
+				mock(CourtViewModelChangePublisher.class);
+		
+		MovableCollidable playerPaddle =
+				new MovableCollidableStub(0);
+		MovableCollidable opponentPaddle =
+				new MovableCollidableStub(0);
+		MovableCollidableStub ball = new MovableCollidableStub(0);
+		Collection<Collidable> walls = new ArrayList<Collidable>();
+		Collidable wall = new CollidableStub(0);
+		walls.add(wall);
+		Collection<Collidable> terminalWalls = new ArrayList<Collidable>();
+		Collidable terminalWall = new CollidableStub(0);
+		terminalWalls.add(terminalWall);
+		
+		CourtViewModelRepository repo =
+				new CourtViewModelRepository(adaptor, changePublisher);
+		
+		repo.initialize(
+				playerPaddle,
+				opponentPaddle,
+				ball,
+				walls,
+				terminalWalls
+			);
+		repo.update();
+		
+		verify(changePublisher, times(2)).viewModelChange();
 	}
 
 }

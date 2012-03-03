@@ -38,8 +38,10 @@ public final class MatchFactoryImplIT {
 			);
 		CollidableToElementAdaptor adaptor =
 				injector.getInstance(CollidableToElementAdaptor.class);
+		CourtViewModelChangePublisher changePublisher =
+				injector.getInstance(CourtViewModelChangePublisher.class);
 		CourtViewModelRepository viewModelRepo =
-				new CourtViewModelRepository(adaptor);
+				new CourtViewModelRepository(adaptor, changePublisher);
 		MatchFactory factory = injector.getInstance(MatchFactory.class);
 		Player player = injector.getInstance(Player.class);
 		Player opponent = injector.getInstance(Player.class);

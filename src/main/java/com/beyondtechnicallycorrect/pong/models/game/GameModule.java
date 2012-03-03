@@ -19,6 +19,10 @@ public final class GameModule extends AbstractModule {
 		bind(MatchFactory.class).to(MatchFactoryImpl.class);
 		
 		bind(CollidableToElementAdaptor.class).to(CollidableToElementAdaptorImpl.class);
+		
+		bind(CourtViewModelChangeNotification.class).in(Singleton.class);
+		bind(CourtViewModelChangePublisher.class).to(CourtViewModelChangeNotification.class);
+		bind(CourtViewModelSubscription.class).to(CourtViewModelChangeNotification.class);
 	}
 
 }
