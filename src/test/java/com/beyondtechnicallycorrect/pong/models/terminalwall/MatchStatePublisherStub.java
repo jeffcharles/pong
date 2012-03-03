@@ -12,9 +12,15 @@ final class MatchStatePublisherStub implements MatchStatePublisher {
 	}
 
 	@Override
-	public void publishMatchEnding(Player winningPlayer) {
+	public void publishMatchEndingWithNoWinner() {
 		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	public void publishMatchEndingWithWinner(Player winningPlayer) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

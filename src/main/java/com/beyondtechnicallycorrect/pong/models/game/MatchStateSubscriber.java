@@ -5,6 +5,7 @@ import com.beyondtechnicallycorrect.pong.models.player.Player;
 public interface MatchStateSubscriber {
 	
 	public void matchStarting();
-	public void matchEnding(Player winningPlayer);
+	public void matchEndingWithNoWinner();
+	public void matchEndingWithWinner(Player winningPlayer);
 
 }

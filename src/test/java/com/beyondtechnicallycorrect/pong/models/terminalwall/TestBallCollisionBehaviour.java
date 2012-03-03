@@ -25,7 +25,7 @@ public final class TestBallCollisionBehaviour {
 	}
 	
 	@Test
-	public void testCollide_ShouldPublishMatchEnding() {
+	public void testCollide_ShouldPublishMatchEndingWithWinner() {
 		Player player = new PlayerStub();
 		InternalTerminalWall internalTerminalWall =
 				new InternalTerminalWallStub(player);
@@ -36,7 +36,7 @@ public final class TestBallCollisionBehaviour {
 		Placeable model = new PlaceableStub();
 		cb.collide(model);
 		
-		verify(publisher).publishMatchEnding(player);
+		verify(publisher).publishMatchEndingWithWinner(player);
 	}
 
 }

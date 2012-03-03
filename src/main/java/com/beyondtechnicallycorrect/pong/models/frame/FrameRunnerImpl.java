@@ -22,9 +22,14 @@ final class FrameRunnerImpl implements FrameRunner {
 	public void matchStarting() {
 		start();
 	}
+	
+	@Override
+	public void matchEndingWithNoWinner() {
+		stop();
+	}
 
 	@Override
-	public void matchEnding(Player winningPlayer) {
+	public void matchEndingWithWinner(Player winningPlayer) {
 		stop();
 	}
 	

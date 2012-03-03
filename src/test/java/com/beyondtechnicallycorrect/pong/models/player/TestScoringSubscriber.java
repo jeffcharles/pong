@@ -14,7 +14,7 @@ public final class TestScoringSubscriber {
 		
 		Player winningPlayer = mock(Player.class);
 		
-		subscriber.matchEnding(winningPlayer);
+		subscriber.matchEndingWithWinner(winningPlayer);
 		
 		verify(winningPlayer).incrementScore();
 	}

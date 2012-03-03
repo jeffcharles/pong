@@ -25,11 +25,18 @@ final class MatchStateNotificationService implements MatchStatePublisher,
 			subscriber.matchStarting();
 		}
 	}
+	
+	@Override
+	public void publishMatchEndingWithNoWinner() {
+		for(MatchStateSubscriber subscriber : m_subscribers) {
+			subscriber.matchEndingWithNoWinner();
+		}
+	}
 
 	@Override
-	public void publishMatchEnding(Player winningPlayer) {
+	public void publishMatchEndingWithWinner(Player winningPlayer) {
 		for(MatchStateSubscriber subscriber : m_subscribers) {
-			subscriber.matchEnding(winningPlayer);
+			subscriber.matchEndingWithWinner(winningPlayer);
 		}
 	}
 

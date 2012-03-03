@@ -28,7 +28,7 @@ final class BallCollisionBehaviour implements CollisionBehaviour<Ball> {
 	@Override
 	public void collide(Placeable collidedWith) {
 		Player winningPlayer = m_internalTerminalWall.getPlayer();
-		m_matchStatePublisher.publishMatchEnding(winningPlayer);
+		m_matchStatePublisher.publishMatchEndingWithWinner(winningPlayer);
 	}
 
 }

@@ -19,14 +19,24 @@ public final class TestMatchStateNotificationService {
 	}
 	
 	@Test
-	public void testBroadcastMatchEnding() {
+	public void testBroadcastMatchEndingWithNoWinner() {
+		MatchStateNotificationService service =
+				new MatchStateNotificationService();
+		MatchStateSubscriber subscriber = mock(MatchStateSubscriber.class);
+		service.subscribe(subscriber);
+		service.publishMatchEndingWithNoWinner();
+		verify(subscriber).matchEndingWithNoWinner();
+	}
+	
+	@Test
+	public void testBroadcastMatchEndingWithWinner() {
 		MatchStateNotificationService service =
 				new MatchStateNotificationService();
 		MatchStateSubscriber subscriber = mock(MatchStateSubscriber.class);
 		service.subscribe(subscriber);
 		Player player = new PlayerStub();
-		service.publishMatchEnding(player);
-		verify(subscriber).matchEnding(player);
+		service.publishMatchEndingWithWinner(player);
+		verify(subscriber).matchEndingWithWinner(player);
 	}
 
 }
