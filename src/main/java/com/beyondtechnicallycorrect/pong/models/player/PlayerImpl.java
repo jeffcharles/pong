@@ -1,6 +1,6 @@
 package com.beyondtechnicallycorrect.pong.models.player;
 
-final class PlayerImpl implements Player, Scorable, ScoreIncrementable {
+final class PlayerImpl implements Player {
 	
 	private int m_score;
 
