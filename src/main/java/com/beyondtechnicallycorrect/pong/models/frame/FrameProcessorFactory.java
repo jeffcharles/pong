@@ -2,11 +2,10 @@ package com.beyondtechnicallycorrect.pong.models.frame;
 
 import com.beyondtechnicallycorrect.pong.models.collision.Collidable;
 import com.beyondtechnicallycorrect.pong.models.collision.MovableCollidable;
-import com.beyondtechnicallycorrect.pong.models.game.MatchStateSubscriber;
 
-public interface FrameRunner extends MatchStateSubscriber {
+interface FrameProcessorFactory {
 	
-	public void initialize(
+	public FrameProcessor create(
 			MovableCollidable playerPaddle,
 			MovableCollidable opponentPaddle,
 			MovableCollidable ball,

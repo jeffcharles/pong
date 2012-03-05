@@ -1,20 +1,48 @@
 package com.beyondtechnicallycorrect.pong.models.frame;
 
+import com.beyondtechnicallycorrect.pong.models.collision.Collidable;
+import com.beyondtechnicallycorrect.pong.models.collision.MovableCollidable;
 import com.beyondtechnicallycorrect.pong.models.game.CourtViewModelUpdater;
 import com.beyondtechnicallycorrect.pong.models.player.Player;
+import com.google.inject.Inject;
 
 final class FrameRunnerImpl implements FrameRunner {
 
-	private final Runner m_runner;
+	private final CourtViewModelUpdater m_viewModel;
+	private final FrameProcessorFactory m_frameProcessorFactory;
 	
+	private Runner m_runner;
+	
+	@Inject
 	public FrameRunnerImpl(
-			FrameProcessor frameProcessor,
-			CourtViewModelUpdater viewModel
+			CourtViewModelUpdater viewModel,
+			FrameProcessorFactory frameProcessorFactory
 		) {
 		
+		m_viewModel = viewModel;
+		m_frameProcessorFactory = frameProcessorFactory;
+	}
+	
+	@Override
+	public void initialize(
+			MovableCollidable playerPaddle,
+			MovableCollidable opponentPaddle,
+			MovableCollidable ball,
+			Iterable<Collidable> walls,
+			Iterable<Collidable> terminalWalls
+		) {
+		
+		FrameProcessor processor =
+				m_frameProcessorFactory.create(
+						playerPaddle,
+						opponentPaddle,
+						ball,
+						walls,
+						terminalWalls
+					);
 		m_runner = new Runner(
-				frameProcessor,
-				viewModel
+				processor,
+				m_viewModel
 			);
 	}
 	
@@ -34,21 +62,23 @@ final class FrameRunnerImpl implements FrameRunner {
 	}
 	
 	private void start() {
+		assert(m_runner != null);
 		assert(!m_runner.getMatchRunning());
 		m_runner.setMatchRunning(true);
 		m_runner.run();
 	}
 
 	private void stop() {
+		assert(m_runner != null);
 		assert(m_runner.getMatchRunning());
 		m_runner.setMatchRunning(false);
 	}
 	
 	private class Runner implements Runnable {
 		
-		private final FrameProcessor m_frameProcessor;
 		private final CourtViewModelUpdater m_viewModel;
 		
+		private FrameProcessor m_frameProcessor;
 		private boolean m_matchRunning;
 		
 		public Runner(

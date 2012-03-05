@@ -6,6 +6,7 @@ import java.util.Collection;
 import com.beyondtechnicallycorrect.pong.models.ball.Ball;
 import com.beyondtechnicallycorrect.pong.models.ball.BallFactory;
 import com.beyondtechnicallycorrect.pong.models.collision.Collidable;
+import com.beyondtechnicallycorrect.pong.models.frame.FrameRunner;
 import com.beyondtechnicallycorrect.pong.models.paddle.Paddle;
 import com.beyondtechnicallycorrect.pong.models.paddle.PaddleFactory;
 import com.beyondtechnicallycorrect.pong.models.paddle.PaddleInstructionHolder;
@@ -28,6 +29,7 @@ public final class MatchFactoryImpl implements MatchFactory {
 	private final BallFactory m_ballFactory;
 	private final WallFactory m_wallFactory;
 	private final TerminalWallFactory m_terminalWallFactory;
+	private final FrameRunner m_frameRunner;
 	
 	@Inject
 	public MatchFactoryImpl(
@@ -36,7 +38,8 @@ public final class MatchFactoryImpl implements MatchFactory {
 			PaddleFactory paddleFactory,
 			BallFactory ballFactory,
 			WallFactory wallFactory,
-			TerminalWallFactory terminalWallFactory
+			TerminalWallFactory terminalWallFactory,
+			FrameRunner frameRunner
 		) {
 		
 		m_positionFactory = positionFactory;
@@ -45,6 +48,7 @@ public final class MatchFactoryImpl implements MatchFactory {
 		m_ballFactory = ballFactory;
 		m_wallFactory = wallFactory;
 		m_terminalWallFactory = terminalWallFactory;
+		m_frameRunner = frameRunner;
 	}
 	
 	/* (non-Javadoc)
@@ -163,6 +167,14 @@ public final class MatchFactoryImpl implements MatchFactory {
 		terminalWalls.add(playerTerminalWall);
 		
 		viewModel.initialize(
+				playerPaddle,
+				opponentPaddle,
+				ball,
+				walls,
+				terminalWalls
+			);
+		
+		m_frameRunner.initialize(
 				playerPaddle,
 				opponentPaddle,
 				ball,

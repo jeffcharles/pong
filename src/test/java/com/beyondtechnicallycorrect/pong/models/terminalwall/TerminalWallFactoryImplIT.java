@@ -6,6 +6,7 @@ import org.junit.Test;
 import com.beyondtechnicallycorrect.pong.models.ball.BallModule;
 import com.beyondtechnicallycorrect.pong.models.collision.CollisionBehavioursFactory;
 import com.beyondtechnicallycorrect.pong.models.collision.CollisionModule;
+import com.beyondtechnicallycorrect.pong.models.frame.FrameModule;
 import com.beyondtechnicallycorrect.pong.models.game.GameModule;
 import com.beyondtechnicallycorrect.pong.models.game.MatchStatePublisher;
 import com.beyondtechnicallycorrect.pong.models.movement.MovementModule;
@@ -75,7 +76,8 @@ public final class TerminalWallFactoryImplIT {
 				new PlaceableModule(),
 				new TerminalWallModule(),
 				new VelocityModule(),
-				new WallModule()
+				new WallModule(),
+				new FrameModule()
 			);
 		return injector;
 	}
