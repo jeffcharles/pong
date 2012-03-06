@@ -1,9 +1,10 @@
 package com.beyondtechnicallycorrect.pong.view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
-import javax.swing.JPanel;
+import javax.swing.JComponent;
 
 import com.beyondtechnicallycorrect.pong.models.game.CourtViewModel;
 import com.beyondtechnicallycorrect.pong.models.game.CourtViewModelSubscriber;
@@ -11,7 +12,7 @@ import com.beyondtechnicallycorrect.pong.models.game.Element;
 import com.beyondtechnicallycorrect.pong.viewmodel.AppViewModel;
 
 final class Court
-	extends JPanel
+	extends JComponent
 	implements CourtViewModelSubscriber {
 	
 	private static final long serialVersionUID = 5354932447452837128L;
@@ -22,13 +23,19 @@ final class Court
 			AppViewModel appViewModel
 		) {
 		
+		super();
 		m_appViewModel = appViewModel;
 		this.setPreferredSize(new Dimension(1000, 750));
+		this.setOpaque(true);
 	}
 	
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, 1000, 750);
+		g.setColor(Color.BLACK);
 		
 		CourtViewModel viewModel = m_appViewModel.getViewModel();
 		
@@ -55,12 +62,12 @@ final class Court
 		int width = elem.getX2() - x;
 		int y = elem.getY1();
 		int height = elem.getY2() - y;
-		g.drawRect(x, y, width, height);
+		g.fillRect(x, y, width, height);
 	}
 
 	@Override
 	public void onViewModelChange() {
-		this.repaint();
+		this.repaint(19);
 	}
 
 }

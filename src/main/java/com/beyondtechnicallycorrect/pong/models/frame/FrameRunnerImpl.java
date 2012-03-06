@@ -65,7 +65,7 @@ final class FrameRunnerImpl implements FrameRunner {
 		assert(m_runner != null);
 		assert(!m_runner.getMatchRunning());
 		m_runner.setMatchRunning(true);
-		m_runner.run();
+		new Thread(m_runner).start();
 	}
 
 	private void stop() {
@@ -95,6 +95,10 @@ final class FrameRunnerImpl implements FrameRunner {
 		@Override
 		public void run() {
 			while(m_matchRunning) {
+				try {
+					Thread.sleep(20);
+				} catch (InterruptedException e) {
+				}
 				m_frameProcessor.processFrame();
 				m_viewModel.update();
 			}

@@ -28,6 +28,8 @@ public final class PongPanel
 			CourtViewModelSubscription viewModelChangeSubscription
 		) {
 		
+		super();
+		
 		m_appViewModel = appViewModel;
 		
 		this.setLayout(new BorderLayout());
