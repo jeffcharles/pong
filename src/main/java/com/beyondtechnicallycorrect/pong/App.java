@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import com.beyondtechnicallycorrect.pong.models.ball.BallModule;
 import com.beyondtechnicallycorrect.pong.models.collision.CollisionModule;
 import com.beyondtechnicallycorrect.pong.models.frame.FrameModule;
+import com.beyondtechnicallycorrect.pong.models.game.CourtViewModelSubscription;
 import com.beyondtechnicallycorrect.pong.models.game.GameModule;
 import com.beyondtechnicallycorrect.pong.models.movement.MovementModule;
 import com.beyondtechnicallycorrect.pong.models.paddle.PaddleModule;
@@ -44,7 +45,10 @@ public class App {
 		JFrame frame = new JFrame("Pong");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		PongPanel pongPanel = new PongPanel(appViewModel);
+		CourtViewModelSubscription viewModelChangeSubscription =
+				injector.getInstance(CourtViewModelSubscription.class);
+		PongPanel pongPanel =
+				new PongPanel(appViewModel, viewModelChangeSubscription);
 		frame.getContentPane().add(pongPanel);
 		
 		frame.pack();

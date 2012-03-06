@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import com.beyondtechnicallycorrect.pong.models.game.CourtViewModelSubscription;
 import com.beyondtechnicallycorrect.pong.viewmodel.AppViewModel;
 
 public final class PongPanel
@@ -23,7 +24,8 @@ public final class PongPanel
 	private final Court m_court;
 	
 	public PongPanel(
-			AppViewModel appViewModel
+			AppViewModel appViewModel,
+			CourtViewModelSubscription viewModelChangeSubscription
 		) {
 		
 		m_appViewModel = appViewModel;
@@ -37,6 +39,7 @@ public final class PongPanel
 		this.add(m_newGameButton, BorderLayout.NORTH);
 		
 		m_court = new Court(appViewModel);
+		viewModelChangeSubscription.subscribe(m_court);
 		this.add(m_court, BorderLayout.CENTER);
 	}
 	

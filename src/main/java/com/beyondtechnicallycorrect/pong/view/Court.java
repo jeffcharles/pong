@@ -6,10 +6,13 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import com.beyondtechnicallycorrect.pong.models.game.CourtViewModel;
+import com.beyondtechnicallycorrect.pong.models.game.CourtViewModelSubscriber;
 import com.beyondtechnicallycorrect.pong.models.game.Element;
 import com.beyondtechnicallycorrect.pong.viewmodel.AppViewModel;
 
-final class Court extends JPanel {
+final class Court
+	extends JPanel
+	implements CourtViewModelSubscriber {
 	
 	private static final long serialVersionUID = 5354932447452837128L;
 	
@@ -53,6 +56,11 @@ final class Court extends JPanel {
 		int y = elem.getY1();
 		int height = elem.getY2() - y;
 		g.drawRect(x, y, width, height);
+	}
+
+	@Override
+	public void onViewModelChange() {
+		this.repaint();
 	}
 
 }
