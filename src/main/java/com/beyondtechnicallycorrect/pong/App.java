@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 
 public class App {
 
-	public static void main( String[] args ) {
+	public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(
 				new Runnable() {
 					public void run() {
