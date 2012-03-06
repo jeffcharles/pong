@@ -1,5 +1,6 @@
 package com.beyondtechnicallycorrect.pong;
 
+
 import javax.swing.JFrame;
 
 import com.beyondtechnicallycorrect.pong.models.ball.BallModule;
@@ -14,7 +15,7 @@ import com.beyondtechnicallycorrect.pong.models.position.PositionModule;
 import com.beyondtechnicallycorrect.pong.models.terminalwall.TerminalWallModule;
 import com.beyondtechnicallycorrect.pong.models.velocity.VelocityModule;
 import com.beyondtechnicallycorrect.pong.models.wall.WallModule;
-import com.beyondtechnicallycorrect.pong.view.Court;
+import com.beyondtechnicallycorrect.pong.view.PongPanel;
 import com.beyondtechnicallycorrect.pong.viewmodel.AppViewModel;
 import com.beyondtechnicallycorrect.pong.viewmodel.AppViewModelFactory;
 import com.beyondtechnicallycorrect.pong.viewmodel.AppViewModelModule;
@@ -40,13 +41,13 @@ public class App {
 		
 		appViewModel.createMatch();
 		
-		Court court = new Court(appViewModel);
-		
 		JFrame frame = new JFrame("Pong");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(court);
+		
+		PongPanel pongPanel = new PongPanel(appViewModel);
+		frame.getContentPane().add(pongPanel);
+		
 		frame.pack();
-		frame.setSize(1000, 780);
 		frame.setVisible(true);
 	}
 	

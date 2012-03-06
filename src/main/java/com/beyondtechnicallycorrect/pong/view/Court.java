@@ -1,5 +1,6 @@
 package com.beyondtechnicallycorrect.pong.view;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
@@ -8,7 +9,7 @@ import com.beyondtechnicallycorrect.pong.models.game.CourtViewModel;
 import com.beyondtechnicallycorrect.pong.models.game.Element;
 import com.beyondtechnicallycorrect.pong.viewmodel.AppViewModel;
 
-public final class Court extends JPanel {
+final class Court extends JPanel {
 	
 	private static final long serialVersionUID = 5354932447452837128L;
 	
@@ -19,7 +20,7 @@ public final class Court extends JPanel {
 		) {
 		
 		m_appViewModel = appViewModel;
-		this.setSize(1000, 750);
+		this.setPreferredSize(new Dimension(1000, 750));
 	}
 	
 	@Override
