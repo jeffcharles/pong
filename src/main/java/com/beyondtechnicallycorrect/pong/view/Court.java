@@ -19,7 +19,7 @@ public final class Court extends JPanel {
 		) {
 		
 		m_appViewModel = appViewModel;
-		this.setSize(1000, 1000);
+		this.setSize(1000, 750);
 	}
 	
 	@Override

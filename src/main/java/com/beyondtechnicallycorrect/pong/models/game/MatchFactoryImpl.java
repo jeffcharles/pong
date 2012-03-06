@@ -64,15 +64,15 @@ public final class MatchFactoryImpl implements MatchFactory {
 		) {
 		
 		final int MAX_RIGHT_BOUNDARY = 1000;
-		final int MAX_BOTTOM_BOUNDARY = 1000;
+		final int MAX_BOTTOM_BOUNDARY = 750;
 		final int WALL_THICKNESS = 10;
 		
 		final int TOP_BORDER = WALL_THICKNESS;
 		final int BOTTOM_BORDER = MAX_BOTTOM_BOUNDARY - WALL_THICKNESS;
 		final int DISTANCE_FROM_BORDER = 5;
 		
-		final int PADDLE_LEFT_X = 485;
-		final int PADDLE_RIGHT_X = 515;
+		final int PADDLE_LEFT_X = 465;
+		final int PADDLE_RIGHT_X = 535;
 		final int PADDLE_HEIGHT = 5;
 		
 		final int PLAYER_TOP = TOP_BORDER + DISTANCE_FROM_BORDER;
@@ -107,8 +107,8 @@ public final class MatchFactoryImpl implements MatchFactory {
 		
 		final int BALL_LEFT_X = 495;
 		final int BALL_RIGHT_X = 505;
-		final int BALL_TOP_Y = 495;
-		final int BALL_BOTTOM_Y = 505;
+		final int BALL_TOP_Y = 370;
+		final int BALL_BOTTOM_Y = 380;
 		Position ballPosition = m_positionFactory.create(
 				BALL_LEFT_X,
 				BALL_RIGHT_X,
@@ -128,7 +128,7 @@ public final class MatchFactoryImpl implements MatchFactory {
 		Ball ball = m_ballFactory.create(ballPosition, ballVelocity);
 		
 		final int LEFT_BORDER = WALL_THICKNESS;
-		final int RIGHT_BORDER = MAX_BOTTOM_BOUNDARY - WALL_THICKNESS;
+		final int RIGHT_BORDER = MAX_RIGHT_BOUNDARY - WALL_THICKNESS;
 		
 		Collection<Collidable> walls = new ArrayList<Collidable>();
 		Wall leftWall = m_wallFactory.create(

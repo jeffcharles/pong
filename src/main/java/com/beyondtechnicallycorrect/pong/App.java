@@ -46,7 +46,7 @@ public class App {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(court);
 		frame.pack();
-		frame.setSize(1000, 1000);
+		frame.setSize(1000, 780);
 		frame.setVisible(true);
 	}
 	
