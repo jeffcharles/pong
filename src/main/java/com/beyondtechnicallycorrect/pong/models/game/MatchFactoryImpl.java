@@ -73,7 +73,7 @@ public final class MatchFactoryImpl implements MatchFactory {
 		
 		final int PADDLE_LEFT_X = 465;
 		final int PADDLE_RIGHT_X = 535;
-		final int PADDLE_HEIGHT = 5;
+		final int PADDLE_HEIGHT = 10;
 		
 		final int PLAYER_TOP = TOP_BORDER + DISTANCE_FROM_BORDER;
 		final int PLAYER_BOTTOM = PLAYER_TOP + PADDLE_HEIGHT;
