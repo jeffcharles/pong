@@ -58,7 +58,7 @@ public final class MatchFactoryImplIT {
 		CourtViewModel viewModel = viewModelRepo.get();
 		Element wall = viewModel.getWalls().iterator().next();
 		Assert.assertEquals("Top should be 0", 0, wall.getY1());
-		Assert.assertEquals("Bottom should be 1000", 1000, wall.getY2());
+		Assert.assertEquals("Bottom should be 1000", 750, wall.getY2());
 		Element terminalWall = viewModel.getTerminalWalls().iterator().next();
 		Assert.assertEquals("Left should be 0", 0, terminalWall.getX1());
 		Assert.assertEquals("Right should be 1000", 1000, terminalWall.getX2());
