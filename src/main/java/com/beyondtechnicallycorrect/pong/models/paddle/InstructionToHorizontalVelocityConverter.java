@@ -6,9 +6,9 @@ import com.beyondtechnicallycorrect.pong.models.velocity.VelocityFactory;
 final class InstructionToHorizontalVelocityConverter implements
 		InstructionToVelocityConverter {
 	
-	final int X_POS = 1;
+	final int X_POS = 3;
 	final int X_STATIONARY = 0;
-	final int X_NEG = -1;
+	final int X_NEG = -3;
 	
 	private final VelocityFactory m_velocityFactory;
 	

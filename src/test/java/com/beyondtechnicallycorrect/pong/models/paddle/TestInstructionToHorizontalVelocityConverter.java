@@ -71,7 +71,7 @@ public final class TestInstructionToHorizontalVelocityConverter {
 		VelocityFactory velFactory = new VelocityFactoryStub();
 		InstructionToVelocityConverter converter =
 				new InstructionToHorizontalVelocityConverter(velFactory);
-		final int STARTING_X = 1;
+		final int STARTING_X = 3;
 		Velocity vel = new VelocityStub(STARTING_X, 1, 0, 1);
 		
 		final PaddleInstruction PADDLE_INSTRUCTION = PaddleInstruction.POS;
