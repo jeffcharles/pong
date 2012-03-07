@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -13,7 +14,7 @@ import com.beyondtechnicallycorrect.pong.viewmodel.AppViewModel;
 
 public final class PongPanel
 	extends JPanel
-	implements ActionListener {
+	implements ActionListener, KeyListener {
 	
 	private static final long serialVersionUID = -9201528908073199529L;
 	
@@ -43,6 +44,10 @@ public final class PongPanel
 		m_court = new Court(appViewModel);
 		viewModelChangeSubscription.subscribe(m_court);
 		this.add(m_court, BorderLayout.CENTER);
+		
+		this.setFocusable(true);
+		this.addKeyListener(this);
+		this.grabFocus();
 	}
 	
 	@Override
@@ -51,6 +56,30 @@ public final class PongPanel
 			m_newGameButton.setEnabled(false);
 			m_appViewModel.startMatch();
 		}
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		char keyPressed = e.getKeyChar();
+		if(keyPressed == 'j') {
+			m_appViewModel.movePlayerPaddleLeft();
+		}
+		if(keyPressed == 'l') {
+			m_appViewModel.movePlayerPaddleRight();
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		char keyPressed = e.getKeyChar();
+		if(keyPressed == 'j' || keyPressed == 'l') {
+			m_appViewModel.stopMovingPlayerPaddle();
+		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// Do nothing
 	}
 
 }
