@@ -65,7 +65,7 @@ public final class MatchFactoryImpl implements MatchFactory {
 		
 		final int MAX_RIGHT_BOUNDARY = 1000;
 		final int MAX_BOTTOM_BOUNDARY = 750;
-		final int WALL_THICKNESS = 10;
+		final int WALL_THICKNESS = 15;
 		
 		final int TOP_BORDER = WALL_THICKNESS;
 		final int BOTTOM_BORDER = MAX_BOTTOM_BOUNDARY - WALL_THICKNESS;
