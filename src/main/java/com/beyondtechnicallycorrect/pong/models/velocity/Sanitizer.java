@@ -14,35 +14,47 @@ final class Sanitizer {
 		// intent is to minimize value of amountToMove and frames, while
 		// keeping the approximate value of amountToMove / frames the same
 		
-		int amountToMove = info.getAmountToMove();
-		int frames = info.getFramesPerMove();
+		int startingAmountToMove = info.getAmountToMove();
+		int startingFramesPerMove = info.getFramesPerMove();
 		
-		if(amountToMove == 0) {
-			return new DirectionalVelocityInfo(amountToMove, 1);
+		int sanitizedAmountToMove = startingAmountToMove;
+		int sanitizedFramesPerMove = startingFramesPerMove;
+		if(sanitizedAmountToMove % sanitizedFramesPerMove == 0) {
+			sanitizedAmountToMove /= sanitizedFramesPerMove;
+			sanitizedFramesPerMove = 1;
 		}
-		
-		boolean greaterThanOne =
-				Math.abs(amountToMove) / frames >= 1;
-		int quotient = Math.abs(greaterThanOne ?
-				amountToMove / frames :
-				frames / amountToMove);
-		int remainder = greaterThanOne ?
-				amountToMove % frames :
-				frames % amountToMove;
-		
-		if(remainder < quotient) {
-			int sanitizedAmount = greaterThanOne ?
-					amountToMove / frames :
-					amountToMove > 0 ? 1 : -1;
-			int sanitizedFrames = greaterThanOne ?
-					1 :
-					frames / Math.abs(amountToMove);
+		if(sanitizedAmountToMove != 0 &&
+				sanitizedFramesPerMove % sanitizedAmountToMove == 0
+			) {
 			
-			return new DirectionalVelocityInfo(
-					sanitizedAmount, sanitizedFrames);
+			sanitizedFramesPerMove /= Math.abs(sanitizedAmountToMove);
+			sanitizedAmountToMove = sanitizedAmountToMove > 0 ? 1 : -1;
 		}
 		
-		return info;
+		final int MAX_AMOUNT_TO_MOVE = 10;
+		if(sanitizedAmountToMove > MAX_AMOUNT_TO_MOVE) {
+			int divisor = sanitizedAmountToMove / MAX_AMOUNT_TO_MOVE + 1;
+			sanitizedAmountToMove /= divisor;
+			sanitizedFramesPerMove /= divisor;
+		}
+		
+		final int MAX_FRAMES_PER_MOVE = 5;
+		if(sanitizedFramesPerMove > MAX_FRAMES_PER_MOVE) {
+			int divisor = sanitizedFramesPerMove / MAX_FRAMES_PER_MOVE + 1;
+			sanitizedAmountToMove /= divisor;
+			sanitizedFramesPerMove /= divisor;
+		}
+		
+		if(sanitizedFramesPerMove < 1) {
+			sanitizedFramesPerMove = 1;
+		}
+		
+		DirectionalVelocityInfo sanitizedVelocity =
+				new DirectionalVelocityInfo(
+						sanitizedAmountToMove,
+						sanitizedFramesPerMove
+					);
+		return sanitizedVelocity;
 	}
 	
 }
