@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.beyondtechnicallycorrect.pong.models.game.CourtViewModelSubscription;
@@ -24,6 +25,7 @@ public final class PongPanel
 	private final String START_MATCH_ACTION = "start match";
 	
 	private final AppViewModel m_appViewModel;
+	private final JLabel m_score;
 	private final JButton m_startMatchButton;
 	private final Court m_court;
 	
@@ -39,11 +41,19 @@ public final class PongPanel
 		
 		this.setLayout(new BorderLayout());
 		
+		JPanel upperPanel = new JPanel();
+		upperPanel.setLayout(new BorderLayout());
+		
+		m_score = new JLabel("Player: 0  Opponent: 0");
+		upperPanel.add(m_score, BorderLayout.LINE_START);
+		
 		m_startMatchButton = new JButton("Start match");
 		m_startMatchButton.setMnemonic(KeyEvent.VK_N);
 		m_startMatchButton.setActionCommand(START_MATCH_ACTION);
 		m_startMatchButton.addActionListener(this);
-		this.add(m_startMatchButton, BorderLayout.NORTH);
+		upperPanel.add(m_startMatchButton, BorderLayout.LINE_END);
+		
+		this.add(upperPanel, BorderLayout.PAGE_START);
 		
 		m_court = new Court(appViewModel);
 		viewModelChangeSubscription.subscribe(m_court);
