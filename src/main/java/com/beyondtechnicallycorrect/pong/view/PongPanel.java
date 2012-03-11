@@ -10,11 +10,14 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import com.beyondtechnicallycorrect.pong.models.game.CourtViewModelSubscription;
+import com.beyondtechnicallycorrect.pong.models.game.MatchStateSubscriber;
+import com.beyondtechnicallycorrect.pong.models.game.MatchStateSubscription;
+import com.beyondtechnicallycorrect.pong.models.player.Player;
 import com.beyondtechnicallycorrect.pong.viewmodel.AppViewModel;
 
 public final class PongPanel
 	extends JPanel
-	implements ActionListener, KeyListener {
+	implements ActionListener, KeyListener, MatchStateSubscriber {
 	
 	private static final long serialVersionUID = -9201528908073199529L;
 	
@@ -26,7 +29,8 @@ public final class PongPanel
 	
 	public PongPanel(
 			AppViewModel appViewModel,
-			CourtViewModelSubscription viewModelChangeSubscription
+			CourtViewModelSubscription viewModelChangeSubscription,
+			MatchStateSubscription matchStateSubscription
 		) {
 		
 		super();
@@ -45,6 +49,8 @@ public final class PongPanel
 		viewModelChangeSubscription.subscribe(m_court);
 		this.add(m_court, BorderLayout.CENTER);
 		
+		matchStateSubscription.subscribe(this);
+		
 		this.setFocusable(true);
 		this.addKeyListener(this);
 		this.grabFocus();
@@ -53,7 +59,6 @@ public final class PongPanel
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals(NEW_GAME_ACTION)) {
-			m_newGameButton.setEnabled(false);
 			m_appViewModel.startMatch();
 		}
 	}
@@ -80,6 +85,21 @@ public final class PongPanel
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// Do nothing
+	}
+
+	@Override
+	public void matchStarting() {
+		m_newGameButton.setEnabled(false);
+	}
+
+	@Override
+	public void matchEndingWithNoWinner() {
+		m_newGameButton.setEnabled(true);
+	}
+
+	@Override
+	public void matchEndingWithWinner(Player winningPlayer) {
+		m_newGameButton.setEnabled(true);
 	}
 
 }

@@ -8,6 +8,7 @@ import com.beyondtechnicallycorrect.pong.models.collision.CollisionModule;
 import com.beyondtechnicallycorrect.pong.models.frame.FrameModule;
 import com.beyondtechnicallycorrect.pong.models.game.CourtViewModelSubscription;
 import com.beyondtechnicallycorrect.pong.models.game.GameModule;
+import com.beyondtechnicallycorrect.pong.models.game.MatchStateSubscription;
 import com.beyondtechnicallycorrect.pong.models.movement.MovementModule;
 import com.beyondtechnicallycorrect.pong.models.paddle.PaddleModule;
 import com.beyondtechnicallycorrect.pong.models.placeable.PlaceableModule;
@@ -47,8 +48,14 @@ public class App {
 		
 		CourtViewModelSubscription viewModelChangeSubscription =
 				injector.getInstance(CourtViewModelSubscription.class);
+		MatchStateSubscription matchStateSubscription =
+				injector.getInstance(MatchStateSubscription.class);
 		PongPanel pongPanel =
-				new PongPanel(appViewModel, viewModelChangeSubscription);
+				new PongPanel(
+						appViewModel,
+						viewModelChangeSubscription,
+						matchStateSubscription
+					);
 		frame.getContentPane().add(pongPanel);
 		
 		frame.pack();
