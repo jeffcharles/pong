@@ -163,6 +163,62 @@ public final class TestSanitizer {
 	}
 	
 	@Test
+	public void testSanitize_WhenSixAndNine_ShouldReturnTwoAndThree() {
+		final int AMOUNT_TO_MOVE = 6;
+		final int FRAMES = 9;
+		DirectionalVelocityInfo info =
+				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES);
+		DirectionalVelocityInfo sanitized = m_sanitizer.sanitize(info);
+		
+		final int SANITIZED_AMOUNT = 2;
+		final int SANITIZED_FRAMES = 3;
+		assertDirectionalVelocityInfo(
+				SANITIZED_AMOUNT, SANITIZED_FRAMES, sanitized);
+	}
+	
+	@Test
+	public void testSanitize_WhenNineAndSix_ShouldReturnThreeAndTwo() {
+		final int AMOUNT_TO_MOVE = 9;
+		final int FRAMES = 6;
+		DirectionalVelocityInfo info =
+				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES);
+		DirectionalVelocityInfo sanitized = m_sanitizer.sanitize(info);
+		
+		final int SANITIZED_AMOUNT = 3;
+		final int SANITIZED_FRAMES = 2;
+		assertDirectionalVelocityInfo(
+				SANITIZED_AMOUNT, SANITIZED_FRAMES, sanitized);
+	}
+	
+	@Test
+	public void testSanitize_WhenNegSixAndNine_ShouldReturnNegTwoAndThree() {
+		final int AMOUNT_TO_MOVE = -6;
+		final int FRAMES = 9;
+		DirectionalVelocityInfo info =
+				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES);
+		DirectionalVelocityInfo sanitized = m_sanitizer.sanitize(info);
+		
+		final int SANITIZED_AMOUNT = -2;
+		final int SANITIZED_FRAMES = 3;
+		assertDirectionalVelocityInfo(
+				SANITIZED_AMOUNT, SANITIZED_FRAMES, sanitized);
+	}
+	
+	@Test
+	public void testSanitize_WhenNegNineAndSix_ShouldReturnNegThreeAndTwo() {
+		final int AMOUNT_TO_MOVE = -9;
+		final int FRAMES = 6;
+		DirectionalVelocityInfo info =
+				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES);
+		DirectionalVelocityInfo sanitized = m_sanitizer.sanitize(info);
+		
+		final int SANITIZED_AMOUNT = -3;
+		final int SANITIZED_FRAMES = 2;
+		assertDirectionalVelocityInfo(
+				SANITIZED_AMOUNT, SANITIZED_FRAMES, sanitized);
+	}
+	
+	@Test
 	public void testSanitize_WhenAtMaximumVelocityAmount_ShouldDoNormalSanitizing() {
 		final int AMOUNT_TO_MOVE = 10;
 		final int FRAMES = 1;
@@ -227,6 +283,36 @@ public final class TestSanitizer {
 		DirectionalVelocityInfo sanitized = m_sanitizer.sanitize(info);
 		
 		final int SANITIZED_AMOUNT = 1;
+		final int SANITIZED_FRAMES = 3;
+		assertDirectionalVelocityInfo(
+				SANITIZED_AMOUNT, SANITIZED_FRAMES, sanitized);
+	}
+	
+	@Test
+	public void testSanitize_WhenAboveMaximumVelocityButCanFactorBelow_ShouldFactorBelow() {
+		final int AMOUNT_TO_MOVE = 14;
+		final int FRAMES = 4;
+		DirectionalVelocityInfo info =
+				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES);
+		
+		DirectionalVelocityInfo sanitized = m_sanitizer.sanitize(info);
+		
+		final int SANITIZED_AMOUNT = 7;
+		final int SANITIZED_FRAMES = 2;
+		assertDirectionalVelocityInfo(
+				SANITIZED_AMOUNT, SANITIZED_FRAMES, sanitized);
+	}
+	
+	@Test
+	public void testSanitize_WhenAboveMaximumFramesButCanFactorBelow_ShouldFactorBelow() {
+		final int AMOUNT_TO_MOVE = 14;
+		final int FRAMES = 6;
+		DirectionalVelocityInfo info =
+				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES);
+		
+		DirectionalVelocityInfo sanitized = m_sanitizer.sanitize(info);
+		
+		final int SANITIZED_AMOUNT = 7;
 		final int SANITIZED_FRAMES = 3;
 		assertDirectionalVelocityInfo(
 				SANITIZED_AMOUNT, SANITIZED_FRAMES, sanitized);

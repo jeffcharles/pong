@@ -1,5 +1,8 @@
 package com.beyondtechnicallycorrect.pong.models.velocity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 final class Sanitizer {
 
 	/**
@@ -19,17 +22,14 @@ final class Sanitizer {
 		
 		int sanitizedAmountToMove = startingAmountToMove;
 		int sanitizedFramesPerMove = startingFramesPerMove;
-		if(sanitizedAmountToMove % sanitizedFramesPerMove == 0) {
-			sanitizedAmountToMove /= sanitizedFramesPerMove;
-			sanitizedFramesPerMove = 1;
-		}
-		if(sanitizedAmountToMove != 0 &&
-				sanitizedFramesPerMove % sanitizedAmountToMove == 0
-			) {
-			
-			sanitizedFramesPerMove /= Math.abs(sanitizedAmountToMove);
-			sanitizedAmountToMove = sanitizedAmountToMove > 0 ? 1 : -1;
-		}
+
+		int greatestCommonDenominator =
+				findGreatestCommonDenominator(
+						sanitizedAmountToMove,
+						sanitizedFramesPerMove
+					);
+		sanitizedAmountToMove /= greatestCommonDenominator;
+		sanitizedFramesPerMove /= greatestCommonDenominator;
 		
 		final int MAX_AMOUNT_TO_MOVE = 10;
 		if(sanitizedAmountToMove > MAX_AMOUNT_TO_MOVE) {
@@ -55,6 +55,47 @@ final class Sanitizer {
 						sanitizedFramesPerMove
 					);
 		return sanitizedVelocity;
+	}
+	
+	private int findGreatestCommonDenominator(int left, int right) {
+		int greatestCommonDenominator = 1;
+		int wholeLeft = Math.abs(left);
+		int wholeRight = Math.abs(right);
+		if(wholeLeft == 0 || wholeRight == 0) {
+			return greatestCommonDenominator;
+		}
+		Map<Integer, Integer> leftPrimes = getPrimes(wholeLeft);
+		Map<Integer, Integer> rightPrimes = getPrimes(wholeRight);
+		for(int prime : leftPrimes.keySet()) {
+			if(rightPrimes.containsKey(prime)) {
+				int leftCount = leftPrimes.get(prime);
+				int rightCount = rightPrimes.get(prime);
+				int commonCount = Math.min(leftCount, rightCount);
+				greatestCommonDenominator *= prime * commonCount;
+			}
+		}
+		return greatestCommonDenominator;
+	}
+	
+	private Map<Integer, Integer> getPrimes(int num) {
+		final int[] PRIME_NUMBERS =
+				new int[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 };
+		Map<Integer, Integer> primes = new HashMap<Integer, Integer>();
+		int numInProgress = num;
+		for(int primeNumber : PRIME_NUMBERS) {
+			int occurrences = 0;
+			while(numInProgress % primeNumber == 0) {
+				++occurrences;
+				numInProgress /= primeNumber;
+			}
+			if(occurrences > 0) {
+				primes.put(primeNumber, occurrences);
+			}
+			if(numInProgress == 1) {
+				break;
+			}
+		}
+		return primes;
 	}
 	
 }
