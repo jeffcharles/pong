@@ -65,7 +65,7 @@ public final class PongPanel
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		char keyPressed = e.getKeyChar();
+		char keyPressed = Character.toLowerCase(e.getKeyChar());
 		if(keyPressed == 'j') {
 			m_appViewModel.movePlayerPaddleLeft();
 		}
@@ -76,7 +76,7 @@ public final class PongPanel
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		char keyPressed = e.getKeyChar();
+		char keyPressed = Character.toLowerCase(e.getKeyChar());
 		if(keyPressed == 'j' || keyPressed == 'l') {
 			m_appViewModel.stopMovingPlayerPaddle();
 		}
