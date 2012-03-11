@@ -1,17 +1,13 @@
-package com.beyondtechnicallycorrect.pong;
+package com.beyondtechnicallycorrect.pong.ai;
 
+import junit.framework.Assert;
 
-import javax.swing.JFrame;
+import org.junit.Test;
 
-import com.beyondtechnicallycorrect.pong.ai.AIModule;
-import com.beyondtechnicallycorrect.pong.ai.AIRunner;
-import com.beyondtechnicallycorrect.pong.ai.AIRunnerFactory;
 import com.beyondtechnicallycorrect.pong.models.ball.BallModule;
 import com.beyondtechnicallycorrect.pong.models.collision.CollisionModule;
 import com.beyondtechnicallycorrect.pong.models.frame.FrameModule;
-import com.beyondtechnicallycorrect.pong.models.game.CourtViewModelSubscription;
 import com.beyondtechnicallycorrect.pong.models.game.GameModule;
-import com.beyondtechnicallycorrect.pong.models.game.MatchStateSubscription;
 import com.beyondtechnicallycorrect.pong.models.movement.MovementModule;
 import com.beyondtechnicallycorrect.pong.models.paddle.PaddleModule;
 import com.beyondtechnicallycorrect.pong.models.placeable.PlaceableModule;
@@ -20,60 +16,29 @@ import com.beyondtechnicallycorrect.pong.models.position.PositionModule;
 import com.beyondtechnicallycorrect.pong.models.terminalwall.TerminalWallModule;
 import com.beyondtechnicallycorrect.pong.models.velocity.VelocityModule;
 import com.beyondtechnicallycorrect.pong.models.wall.WallModule;
-import com.beyondtechnicallycorrect.pong.view.PongPanel;
 import com.beyondtechnicallycorrect.pong.viewmodel.AppViewModel;
 import com.beyondtechnicallycorrect.pong.viewmodel.AppViewModelFactory;
 import com.beyondtechnicallycorrect.pong.viewmodel.AppViewModelModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-public class App {
-
-	public static void main(String[] args) {
-		javax.swing.SwingUtilities.invokeLater(
-				new Runnable() {
-					public void run() {
-						setupGui();
-					}
-			});
-	}
+public final class AIRunnerFactoryImplIT {
 	
-	private static void setupGui() {
+	@Test
+	public void create_ShouldReturnNonNullAIRunner() {
+		AIRunnerFactory factory = new AIRunnerFactoryImpl();
 		Injector injector = getInjector();
 		AppViewModelFactory appViewModelFactory =
 				injector.getInstance(AppViewModelFactory.class);
 		AppViewModel appViewModel = appViewModelFactory.create();
 		
-		appViewModel.createMatch();
+		AIRunner runner = factory.create(appViewModel);
 		
-		JFrame frame = new JFrame("Pong");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		CourtViewModelSubscription viewModelChangeSubscription =
-				injector.getInstance(CourtViewModelSubscription.class);
-		MatchStateSubscription matchStateSubscription =
-				injector.getInstance(MatchStateSubscription.class);
-		
-		AIRunnerFactory aiFactory =
-				injector.getInstance(AIRunnerFactory.class);
-		AIRunner aiRunner = aiFactory.create(appViewModel);
-		matchStateSubscription.subscribe(aiRunner);
-		
-		PongPanel pongPanel =
-				new PongPanel(
-						appViewModel,
-						viewModelChangeSubscription,
-						matchStateSubscription
-					);
-		frame.getContentPane().add(pongPanel);
-		
-		frame.pack();
-		frame.setVisible(true);
+		Assert.assertNotNull(runner);
 	}
 	
-	private static Injector getInjector() {
+	private Injector getInjector() {
 		Injector injector = Guice.createInjector(
-				new AIModule(),
 				new AppViewModelModule(),
 				new BallModule(),
 				new CollisionModule(),
@@ -90,5 +55,5 @@ public class App {
 			);
 		return injector;
 	}
-	
+
 }
