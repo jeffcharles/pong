@@ -59,6 +59,7 @@ public final class PongPanel
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals(START_MATCH_ACTION)) {
+			m_appViewModel.createMatch();
 			m_appViewModel.startMatch();
 		}
 	}
