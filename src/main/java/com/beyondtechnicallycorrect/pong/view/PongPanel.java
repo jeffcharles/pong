@@ -21,10 +21,10 @@ public final class PongPanel
 	
 	private static final long serialVersionUID = -9201528908073199529L;
 	
-	private final String NEW_GAME_ACTION = "new game";
+	private final String START_MATCH_ACTION = "start match";
 	
 	private final AppViewModel m_appViewModel;
-	private final JButton m_newGameButton;
+	private final JButton m_startMatchButton;
 	private final Court m_court;
 	
 	public PongPanel(
@@ -39,11 +39,11 @@ public final class PongPanel
 		
 		this.setLayout(new BorderLayout());
 		
-		m_newGameButton = new JButton("New game");
-		m_newGameButton.setMnemonic(KeyEvent.VK_N);
-		m_newGameButton.setActionCommand(NEW_GAME_ACTION);
-		m_newGameButton.addActionListener(this);
-		this.add(m_newGameButton, BorderLayout.NORTH);
+		m_startMatchButton = new JButton("Start match");
+		m_startMatchButton.setMnemonic(KeyEvent.VK_N);
+		m_startMatchButton.setActionCommand(START_MATCH_ACTION);
+		m_startMatchButton.addActionListener(this);
+		this.add(m_startMatchButton, BorderLayout.NORTH);
 		
 		m_court = new Court(appViewModel);
 		viewModelChangeSubscription.subscribe(m_court);
@@ -58,7 +58,7 @@ public final class PongPanel
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals(NEW_GAME_ACTION)) {
+		if(e.getActionCommand().equals(START_MATCH_ACTION)) {
 			m_appViewModel.startMatch();
 		}
 	}
@@ -89,17 +89,17 @@ public final class PongPanel
 
 	@Override
 	public void matchStarting() {
-		m_newGameButton.setEnabled(false);
+		m_startMatchButton.setEnabled(false);
 	}
 
 	@Override
 	public void matchEndingWithNoWinner() {
-		m_newGameButton.setEnabled(true);
+		m_startMatchButton.setEnabled(true);
 	}
 
 	@Override
 	public void matchEndingWithWinner(Player winningPlayer) {
-		m_newGameButton.setEnabled(true);
+		m_startMatchButton.setEnabled(true);
 	}
 
 }
