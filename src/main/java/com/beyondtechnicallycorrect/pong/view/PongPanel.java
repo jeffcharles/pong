@@ -23,6 +23,7 @@ public final class PongPanel
 	private static final long serialVersionUID = -9201528908073199529L;
 	
 	private final String START_MATCH_ACTION = "start match";
+	private final String SCORE_FORMAT = "Player: %d   Opponent: %d";
 	
 	private final AppViewModel m_appViewModel;
 	private final JLabel m_score;
@@ -44,7 +45,7 @@ public final class PongPanel
 		JPanel upperPanel = new JPanel();
 		upperPanel.setLayout(new BorderLayout());
 		
-		m_score = new JLabel("Player: 0  Opponent: 0");
+		m_score = new JLabel(String.format(SCORE_FORMAT, 0, 0));
 		upperPanel.add(m_score, BorderLayout.LINE_START);
 		
 		m_startMatchButton = new JButton("Start match");
@@ -111,6 +112,10 @@ public final class PongPanel
 	@Override
 	public void matchEndingWithWinner(Player winningPlayer) {
 		m_startMatchButton.setEnabled(true);
+		int playerScore = m_appViewModel.getPlayerScore();
+		int opponentScore = m_appViewModel.getOpponentScore();
+		m_score.setText(
+				String.format(SCORE_FORMAT, playerScore, opponentScore));
 	}
 
 }
