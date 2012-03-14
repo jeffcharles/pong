@@ -261,6 +261,21 @@ public final class TestSanitizer {
 	}
 	
 	@Test
+	public void testSanitize_WhenAboveMaximumVelocityButNegative_ShouldFactor() {
+		final int AMOUNT_TO_MOVE = -11;
+		final int FRAMES = 1;
+		DirectionalVelocityInfo info =
+				new DirectionalVelocityInfo(AMOUNT_TO_MOVE, FRAMES);
+		
+		DirectionalVelocityInfo sanitized = m_sanitizer.sanitize(info);
+		
+		final int SANITIZED_AMOUNT = -5;
+		final int SANITIZED_FRAMES = 1;
+		assertDirectionalVelocityInfo(
+				SANITIZED_AMOUNT, SANITIZED_FRAMES, sanitized);
+	}
+	
+	@Test
 	public void testSanitized_WhenAtMaximumFrames_ShouldDoNormalSanitizing() {
 		final int AMOUNT_TO_MOVE = 3;
 		final int FRAMES = 5;

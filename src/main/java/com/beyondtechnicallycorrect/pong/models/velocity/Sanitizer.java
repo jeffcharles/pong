@@ -32,8 +32,8 @@ final class Sanitizer {
 		sanitizedFramesPerMove /= greatestCommonDenominator;
 		
 		final int MAX_AMOUNT_TO_MOVE = 10;
-		if(sanitizedAmountToMove > MAX_AMOUNT_TO_MOVE) {
-			int divisor = sanitizedAmountToMove / MAX_AMOUNT_TO_MOVE + 1;
+		if(Math.abs(sanitizedAmountToMove) > MAX_AMOUNT_TO_MOVE) {
+			int divisor = Math.abs(sanitizedAmountToMove) / MAX_AMOUNT_TO_MOVE + 1;
 			sanitizedAmountToMove /= divisor;
 			sanitizedFramesPerMove /= divisor;
 		}
