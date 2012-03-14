@@ -65,7 +65,7 @@ final class FrameRunnerImpl implements FrameRunner {
 		assert(m_runner != null);
 		assert(!m_runner.getMatchRunning());
 		m_runner.setMatchRunning(true);
-		new Thread(m_runner).start();
+		new Thread(m_runner, "Frame processing").start();
 	}
 
 	private void stop() {

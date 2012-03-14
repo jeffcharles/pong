@@ -17,7 +17,7 @@ final class AIRunnerImpl implements AIRunner {
 	public void matchStarting() {
 		assert(!m_runner.getMatchRunning());
 		m_runner.setMatchRunning(true);
-		new Thread(m_runner).start();
+		new Thread(m_runner, "Opponent AI").start();
 	}
 
 	@Override
