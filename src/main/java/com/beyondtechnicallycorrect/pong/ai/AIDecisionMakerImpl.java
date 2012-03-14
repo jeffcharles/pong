@@ -1,38 +1,58 @@
 package com.beyondtechnicallycorrect.pong.ai;
 
 import com.beyondtechnicallycorrect.pong.models.game.CourtViewModel;
+import com.beyondtechnicallycorrect.pong.models.game.Element;
 import com.beyondtechnicallycorrect.pong.models.game.MovableElement;
 import com.beyondtechnicallycorrect.pong.viewmodel.AppViewModel;
 
 final class AIDecisionMakerImpl implements AIDecisionMaker {
 
 	private final AppViewModel m_appViewModel;
+	private final BallDestinationCalculator m_ballDestCalculator;
 	
 	public AIDecisionMakerImpl(
-			AppViewModel appViewModel
+			AppViewModel appViewModel,
+			BallDestinationCalculator ballDestCalculator
 		) {
 		
 		m_appViewModel = appViewModel;
+		m_ballDestCalculator = ballDestCalculator;
 	}
 	
 	@Override
 	public void analyzeAndAct() {
 		CourtViewModel courtViewModel = m_appViewModel.getViewModel();
-		
 		MovableElement paddle = courtViewModel.getOpponentPaddle();
-		int paddleX1 = paddle.getX1();
-		int paddleX2 = paddle.getX2();
-		
 		MovableElement ball = courtViewModel.getBall();
-		int ballX1 = ball.getX1();
-		int ballX2 = ball.getX2();
 		
-		boolean ballRightOfPaddle = paddleX2 < ballX1;
-		boolean ballLeftOfPaddle = ballX2 < paddleX1;
+		int collidingX = 500;
+		boolean ballMovingTowardOpponent = ball.getYVelocity() > 0;
+		if(ballMovingTowardOpponent) {
+			Iterable<Element> walls = courtViewModel.getWalls();
+			int courtWidth = 0;
+			int wallThickness = 0;
+			for(Element wall : walls) {
+				if(wall.getX2() > courtWidth) {
+					courtWidth = wall.getX2();
+					wallThickness = wall.getX2() - wall.getX1();
+				}
+			}
+			int paddleY1 = paddle.getY1();
+			collidingX =
+					m_ballDestCalculator.getXPositionOfBallDestination(
+							courtWidth,
+							wallThickness,
+							paddleY1,
+							ball
+						);
+		}
 		
-		if(ballRightOfPaddle) {
+		boolean goRight = paddle.getX2() < collidingX;
+		boolean goLeft = collidingX < paddle.getX1();
+		
+		if(goRight) {
 			m_appViewModel.moveOpponentPaddleRight();
-		} else if(ballLeftOfPaddle) {
+		} else if(goLeft) {
 			m_appViewModel.moveOpponentPaddleLeft();
 		} else {
 			m_appViewModel.stopMovingOpponentPaddle();

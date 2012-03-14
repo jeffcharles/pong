@@ -8,14 +8,17 @@ final class CourtViewModelStub implements CourtViewModel {
 
 	private final MovableElement m_opponentPaddle;
 	private final MovableElement m_ball;
+	private final Iterable<Element> m_walls;
 	
 	public CourtViewModelStub(
 			MovableElement opponentPaddle,
-			MovableElement ball
+			MovableElement ball,
+			Iterable<Element> walls
 		) {
 		
 		m_opponentPaddle = opponentPaddle;
 		m_ball = ball;
+		m_walls = walls;
 	}
 	
 	@Override
@@ -36,8 +39,7 @@ final class CourtViewModelStub implements CourtViewModel {
 
 	@Override
 	public Iterable<Element> getWalls() {
-		// TODO Auto-generated method stub
-		return null;
+		return m_walls;
 	}
 
 	@Override

@@ -26,7 +26,9 @@ public final class AIRunnerFactoryImplIT {
 	
 	@Test
 	public void create_ShouldReturnNonNullAIRunner() {
-		AIRunnerFactory factory = new AIRunnerFactoryImpl();
+		BallDestinationCalculator ballDestCalc =
+				new BallDestinationCalculatorImpl();
+		AIRunnerFactory factory = new AIRunnerFactoryImpl(ballDestCalc);
 		Injector injector = getInjector();
 		AppViewModelFactory appViewModelFactory =
 				injector.getInstance(AppViewModelFactory.class);
