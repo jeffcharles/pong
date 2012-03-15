@@ -46,7 +46,7 @@ final class Court
 		drawElement(g, opponentPaddle);
 		
 		Element ball = viewModel.getBall();
-		drawElement(g, ball);
+		drawBall(g, ball);
 		
 		for(Element wall : viewModel.getWalls()) {
 			drawElement(g, wall);
@@ -63,6 +63,14 @@ final class Court
 		int y = elem.getY1();
 		int height = elem.getY2() - y;
 		g.fillRect(x, y, width, height);
+	}
+	
+	private void drawBall(Graphics g, Element ball) {
+		int x = ball.getX1();
+		int width = ball.getX2() - x;
+		int y = ball.getY1();
+		int height = ball.getY2() - y;
+		g.fillOval(x, y, width - 1, height - 1);
 	}
 
 	@Override
