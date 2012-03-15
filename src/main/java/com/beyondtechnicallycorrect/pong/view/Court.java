@@ -19,6 +19,9 @@ final class Court
 	
 	private static final long serialVersionUID = 5354932447452837128L;
 	
+	private final int m_courtWidth;
+	private final int m_courtHeight;
+	
 	private final AppViewModel m_appViewModel;
 	
 	public Court(
@@ -27,7 +30,26 @@ final class Court
 		
 		super();
 		m_appViewModel = appViewModel;
-		this.setPreferredSize(new Dimension(1000, 750));
+		int rightMostWallBorder = 0;
+		for(Element wall : m_appViewModel.getViewModel().getWalls()) {
+			if(wall.getX2() > rightMostWallBorder) {
+				rightMostWallBorder = wall.getX2();
+			}
+		}
+		int wallThickness = getWallThickness();
+		m_courtWidth = rightMostWallBorder - 2 * wallThickness;
+		int bottomMostTerminalWallBorder = 0;
+		for(Element terminalWall :
+				m_appViewModel.getViewModel().getTerminalWalls()
+			) {
+			
+			if(terminalWall.getY2() > bottomMostTerminalWallBorder) {
+				bottomMostTerminalWallBorder = terminalWall.getY2();
+			}
+		}
+		m_courtHeight = bottomMostTerminalWallBorder - 2 * wallThickness;
+		
+		this.setPreferredSize(new Dimension(m_courtWidth, m_courtHeight));
 		this.setOpaque(true);
 	}
 	
@@ -42,7 +64,7 @@ final class Court
 			);
 		
 		g2.setColor(Color.WHITE);
-		g2.fillRect(0, 0, 1000, 750);
+		g2.fillRect(0, 0, m_courtWidth, m_courtHeight);
 		g2.setColor(Color.BLACK);
 		
 		CourtViewModel viewModel = m_appViewModel.getViewModel();
@@ -55,36 +77,24 @@ final class Court
 		
 		Element ball = viewModel.getBall();
 		drawBall(g2, ball);
-		
-		for(Element wall : viewModel.getWalls()) {
-			drawElement(g2, wall);
-		}
-		
-		for(Element terminalWall : viewModel.getTerminalWalls()) {
-			drawElement(g2, terminalWall);
-		}
-	}
-	
-	private void drawElement(Graphics g, Element elem) {
-		int x = elem.getX1();
-		int width = getWidth(elem);
-		int y = elem.getY1();
-		int height = getHeight(elem);
-		g.fillRect(x, y, width, height);
 	}
 	
 	private void drawBall(Graphics g, Element ball) {
-		int x = ball.getX1();
+		int vmX = ball.getX1();
+		int x = convertViewModelPositionToCourtPosition(vmX);
 		int width = getWidth(ball);
-		int y = ball.getY1();
+		int vmY = ball.getY1();
+		int y = convertViewModelPositionToCourtPosition(vmY);
 		int height = getHeight(ball);
 		g.fillOval(x, y, width - 1, height - 1);
 	}
 	
 	private void drawPaddle(Graphics g, Element paddle) {
-		int x = paddle.getX1();
+		int vmX = paddle.getX1();
+		int x = convertViewModelPositionToCourtPosition(vmX);
 		int width = getWidth(paddle);
-		int y = paddle.getY1();
+		int vmY = paddle.getY1();
+		int y = convertViewModelPositionToCourtPosition(vmY);
 		int height = getHeight(paddle);
 		final int ARC_WIDTH = 10;
 		final int ARC_HEIGHT = 10;
@@ -99,6 +109,22 @@ final class Court
 	private int getHeight(Element elem) {
 		int height = elem.getY2() - elem.getY1();
 		return height;
+	}
+	
+	private int convertViewModelPositionToCourtPosition(
+			int viewModelPosition
+		) {
+		
+		int wallThickness = getWallThickness();
+		int courtPosition = viewModelPosition - wallThickness;
+		return courtPosition;
+	}
+	
+	private int getWallThickness() {
+		Element wall =
+				m_appViewModel.getViewModel().getWalls().iterator().next();
+		int wallThickness = wall.getX2() - wall.getX1();
+		return wallThickness;
 	}
 
 	@Override
