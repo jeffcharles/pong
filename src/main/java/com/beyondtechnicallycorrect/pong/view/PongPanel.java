@@ -25,8 +25,8 @@ public final class PongPanel
 	private final String START_MATCH_ACTION = "start match";
 	private final String SCORE_FORMAT = "Player: %d   Opponent: %d";
 	
-	private final char MOVE_LEFT = 'j';
-	private final char MOVE_RIGHT = 'l';
+	private final char MOVE_LEFT = 'a';
+	private final char MOVE_RIGHT = 'd';
 	
 	private final AppViewModel m_appViewModel;
 	private final JLabel m_score;
