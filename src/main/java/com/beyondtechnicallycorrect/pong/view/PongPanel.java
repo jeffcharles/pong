@@ -25,6 +25,9 @@ public final class PongPanel
 	private final String START_MATCH_ACTION = "start match";
 	private final String SCORE_FORMAT = "Player: %d   Opponent: %d";
 	
+	private final char MOVE_LEFT = 'j';
+	private final char MOVE_RIGHT = 'l';
+	
 	private final AppViewModel m_appViewModel;
 	private final JLabel m_score;
 	private final JButton m_startMatchButton;
@@ -78,10 +81,10 @@ public final class PongPanel
 	@Override
 	public void keyPressed(KeyEvent e) {
 		char keyPressed = Character.toLowerCase(e.getKeyChar());
-		if(keyPressed == 'j') {
+		if(keyPressed == MOVE_LEFT) {
 			m_appViewModel.movePlayerPaddleLeft();
 		}
-		if(keyPressed == 'l') {
+		if(keyPressed == MOVE_RIGHT) {
 			m_appViewModel.movePlayerPaddleRight();
 		}
 	}
@@ -89,7 +92,7 @@ public final class PongPanel
 	@Override
 	public void keyReleased(KeyEvent e) {
 		char keyPressed = Character.toLowerCase(e.getKeyChar());
-		if(keyPressed == 'j' || keyPressed == 'l') {
+		if(keyPressed == MOVE_LEFT || keyPressed == MOVE_RIGHT) {
 			m_appViewModel.stopMovingPlayerPaddle();
 		}
 	}
