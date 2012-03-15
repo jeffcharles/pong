@@ -63,9 +63,10 @@ final class Court
 				RenderingHints.VALUE_ANTIALIAS_ON
 			);
 		
-		g2.setColor(Color.WHITE);
-		g2.fillRect(0, 0, m_courtWidth, m_courtHeight);
 		g2.setColor(Color.BLACK);
+		g2.fillRect(0, 0, m_courtWidth, m_courtHeight);
+		Color monochromeyYellow = new Color(0xFFAF00);
+		g2.setColor(monochromeyYellow);
 		
 		CourtViewModel viewModel = m_appViewModel.getViewModel();
 		
