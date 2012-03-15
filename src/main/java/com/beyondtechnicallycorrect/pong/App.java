@@ -2,6 +2,7 @@ package com.beyondtechnicallycorrect.pong;
 
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import com.beyondtechnicallycorrect.pong.ai.AIModule;
 import com.beyondtechnicallycorrect.pong.ai.AIRunner;
@@ -69,6 +70,15 @@ public class App {
 		
 		frame.pack();
 		frame.setVisible(true);
+		
+		JOptionPane.showMessageDialog(frame,
+				"Welcome to my Pong implementation!\n\n" +
+						"You are the top paddle, use the 'a' key to\nmove left and the 'd' key to move right.\n" +
+						"Click on 'Start Match' when you are ready\nto start the match.\n\n" +
+						"Good luck!",
+				"Welcome!",
+				JOptionPane.PLAIN_MESSAGE
+			);
 	}
 	
 	private static Injector getInjector() {
