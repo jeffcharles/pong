@@ -3,6 +3,8 @@ package com.beyondtechnicallycorrect.pong.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 import javax.swing.JComponent;
 
@@ -33,44 +35,70 @@ final class Court
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, 1000, 750);
-		g.setColor(Color.BLACK);
+		Graphics2D g2 = (Graphics2D)g;
+		g2.setRenderingHint(
+				RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON
+			);
+		
+		g2.setColor(Color.WHITE);
+		g2.fillRect(0, 0, 1000, 750);
+		g2.setColor(Color.BLACK);
 		
 		CourtViewModel viewModel = m_appViewModel.getViewModel();
 		
 		Element playerPaddle = viewModel.getPlayerPaddle();
-		drawElement(g, playerPaddle);
+		drawPaddle(g2, playerPaddle);
 		
 		Element opponentPaddle = viewModel.getOpponentPaddle();
-		drawElement(g, opponentPaddle);
+		drawPaddle(g2, opponentPaddle);
 		
 		Element ball = viewModel.getBall();
-		drawBall(g, ball);
+		drawBall(g2, ball);
 		
 		for(Element wall : viewModel.getWalls()) {
-			drawElement(g, wall);
+			drawElement(g2, wall);
 		}
 		
 		for(Element terminalWall : viewModel.getTerminalWalls()) {
-			drawElement(g, terminalWall);
+			drawElement(g2, terminalWall);
 		}
 	}
 	
 	private void drawElement(Graphics g, Element elem) {
 		int x = elem.getX1();
-		int width = elem.getX2() - x;
+		int width = getWidth(elem);
 		int y = elem.getY1();
-		int height = elem.getY2() - y;
+		int height = getHeight(elem);
 		g.fillRect(x, y, width, height);
 	}
 	
 	private void drawBall(Graphics g, Element ball) {
 		int x = ball.getX1();
-		int width = ball.getX2() - x;
+		int width = getWidth(ball);
 		int y = ball.getY1();
-		int height = ball.getY2() - y;
+		int height = getHeight(ball);
 		g.fillOval(x, y, width - 1, height - 1);
+	}
+	
+	private void drawPaddle(Graphics g, Element paddle) {
+		int x = paddle.getX1();
+		int width = getWidth(paddle);
+		int y = paddle.getY1();
+		int height = getHeight(paddle);
+		final int ARC_WIDTH = 10;
+		final int ARC_HEIGHT = 10;
+		g.fillRoundRect(x, y, width + 1, height + 1, ARC_WIDTH, ARC_HEIGHT);
+	}
+	
+	private int getWidth(Element elem) {
+		int width = elem.getX2() - elem.getX1();
+		return width;
+	}
+	
+	private int getHeight(Element elem) {
+		int height = elem.getY2() - elem.getY1();
+		return height;
 	}
 
 	@Override
